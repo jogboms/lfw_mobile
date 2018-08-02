@@ -11,9 +11,9 @@ class OnboardPage extends StatefulWidget {
 
 class OnboardPageState extends State<OnboardPage> {
   final List<ImageProvider> images = [
-    MkImages.o1,
     MkImages.o2,
-    MkImages.o7,
+    MkImages.o4,
+    MkImages.o5,
   ];
 
   final List<String> headers = [
@@ -116,7 +116,7 @@ class OnboardPageState extends State<OnboardPage> {
         SizedBox(height: MediaQuery.of(context).padding.top + 72.0),
         Center(
           child: SizedBox(
-            width: 264.0,
+            width: 220.0,
             child: Material(
               borderRadius: BorderRadius.circular(15.0),
               child: new Image(
