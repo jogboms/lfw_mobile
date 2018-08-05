@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:lfw_mobile/constants/mk_colors.dart';
@@ -40,68 +41,62 @@ class OnboardPageState extends State<OnboardPage> {
 
   @override
   Widget build(BuildContext context) {
+    final media = MediaQuery.of(context);
     return Scaffold(
       body: new Swiper(
-        itemBuilder: _slideBuilder,
+        itemBuilder: _slideBuilder(media),
         itemCount: 3,
         loop: false,
         pagination: new SwiperCustomPagination(
           builder: (BuildContext context, SwiperPluginConfig config) {
             final _isFinal = config.activeIndex + 1 == config.itemCount;
 
-            return new SafeArea(
-              bottom: false,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.only(top: 25.0),
-                    child: Text.rich(
-                      TextSpan(
-                        children: [
-                          TextSpan(
-                            text: "0 ${config.activeIndex + 1}",
-                          ),
-                          TextSpan(
-                            text: "  —  ",
-                          ),
-                          TextSpan(
-                            text: "0 ${config.itemCount}",
-                            style: mkFontColor(Colors.grey),
-                          ),
-                        ],
-                      ),
-                      style: mkFontMedium(14.0),
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-                  Material(
-                    color: MkColors.black,
-                    child: InkWell(
-                      child: SafeArea(
-                        top: false,
-                        child: SizedBox(
-                          height: 46.0,
-                          child: Center(
-                            child: Text(
-                              _isFinal ? "Get Started" : "Skip",
-                              textAlign: TextAlign.center,
-                              style: mkFontColor(Colors.white),
-                            ),
-                          ),
+            return Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+                Padding(
+                  padding: EdgeInsets.only(top: media.padding.top + 25.0),
+                  child: Text.rich(
+                    TextSpan(
+                      children: [
+                        TextSpan(
+                          text: "0 ${config.activeIndex + 1}",
                         ),
-                      ),
-                      onTap: () {
-                        if (_isFinal) {
-                          MkNavigate(context, LoginPage());
-                        } else {
-                          _controller.move(config.itemCount - 1);
-                        }
-                      },
+                        TextSpan(
+                          text: "  —  ",
+                        ),
+                        TextSpan(
+                          text: "0 ${config.itemCount}",
+                          style: mkFontColor(Colors.grey),
+                        ),
+                      ],
                     ),
+                    style: mkFontMedium(14.0),
+                    textAlign: TextAlign.center,
                   ),
-                ],
-              ),
+                ),
+                Container(
+                  color: MkColors.black,
+                  padding: EdgeInsets.only(
+                    bottom: MediaQuery.of(context).padding.bottom,
+                  ),
+                  child: CupertinoButton(
+                    child: Text(
+                      _isFinal ? "Get Started" : "Skip",
+                      textAlign: TextAlign.center,
+                      style: mkFontMedium(16.0, Colors.white),
+                    ),
+                    onPressed: () {
+                      if (_isFinal) {
+                        MkNavigate(context, LoginPage());
+                      } else {
+                        _controller.move(config.itemCount - 1);
+                      }
+                    },
+                  ),
+                ),
+              ],
             );
           },
         ),
@@ -112,41 +107,39 @@ class OnboardPageState extends State<OnboardPage> {
     );
   }
 
-  Widget _slideBuilder(BuildContext context, int index) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.end,
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: <Widget>[
-        SizedBox(height: MediaQuery.of(context).padding.top + 72.0),
-        Center(
-          child: SizedBox(
-            width: 220.0,
+  IndexedWidgetBuilder _slideBuilder(MediaQueryData media) {
+    return (BuildContext context, int index) {
+      return Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: <Widget>[
+          SizedBox(
+            width: media.size.height / 2.9,
             child: Material(
-              borderRadius: BorderRadius.circular(15.0),
+              borderRadius: BorderRadius.circular(5.0),
               child: new Image(
                 image: images[index],
                 fit: BoxFit.fill,
               ),
             ),
           ),
-        ),
-        SizedBox(height: 32.0 * 1.0),
-        Text(
-          headers[index],
-          style: mkFontMedium(24.0),
-          textAlign: TextAlign.center,
-        ),
-        SizedBox(height: 8.0),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 28.0),
-          child: Text(
-            content[index],
-            style: mkFontSize(16.0),
+          SizedBox(height: 24.0),
+          Text(
+            headers[index],
+            style: mkFontMedium(24.0),
             textAlign: TextAlign.center,
           ),
-        ),
-        Expanded(child: SizedBox()),
-      ],
-    );
+          SizedBox(height: 8.0),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 28.0),
+            child: Text(
+              content[index],
+              style: mkFontSize(16.0),
+              textAlign: TextAlign.center,
+            ),
+          ),
+        ],
+      );
+    };
   }
 }

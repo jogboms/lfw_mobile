@@ -22,6 +22,8 @@ flutter:
   fonts:
     - family: SF UI Display
       fonts:
+        - asset: assets/fonts/SF-UI-Display-Light.ttf
+          weight: 200
         - asset: assets/fonts/SF-UI-Display-Regular.ttf
           weight: 400
         - asset: assets/fonts/SF-UI-Display-Medium.ttf
