@@ -35,7 +35,7 @@ class MkColors {
       900: const Color(_baseBlack),
     },
   );
-  static const Color accent = const Color(_baseBlack);
-  static const Color primary = const Color(_baseWhite);
+  static const Color accent = const Color(_baseWhite);
+  static const Color primary = const Color(_baseBlack);
   static const Color light_grey = const Color(0xFF9B9B9B);
 }

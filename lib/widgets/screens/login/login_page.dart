@@ -1,7 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lfw_mobile/constants/mk_colors.dart';
-import 'package:lfw_mobile/constants/mk_theme.dart';
+import 'package:lfw_mobile/constants/mk_images.dart';
+import 'package:lfw_mobile/utils/mk_navigate.dart';
+import 'package:lfw_mobile/utils/mk_theme.dart';
+import 'package:lfw_mobile/widgets/screens/forgot/forgot_page.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -24,12 +27,13 @@ class _LoginPageState extends State<LoginPage> {
             children: <Widget>[
               SizedBox(height: 64.0 * 1.5),
               Center(
-                child: FlutterLogo(
-                  colors: MkColors.black,
+                child: ImageIcon(
+                  MkImages.glam,
+                  color: MkColors.black,
                   size: 120.0,
                 ),
               ),
-              SizedBox(height: 64.0),
+              SizedBox(height: 32.0),
               _buildSwitcher(
                 index: activeIndex,
                 onChange: (index) {
@@ -41,7 +45,7 @@ class _LoginPageState extends State<LoginPage> {
                   });
                 },
               ),
-              SizedBox(height: 32.0),
+              SizedBox(height: 16.0),
               Expanded(
                 child: LayoutBuilder(builder: (_, __) {
                   return ConstrainedBox(
@@ -68,41 +72,27 @@ class _LoginPageState extends State<LoginPage> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: <Widget>[
-        Theme(
-          data: Theme.of(context).copyWith(
-            hintColor: MkColors.light_grey.withOpacity(.3),
-          ),
-          child: Form(
-            child: Column(
-              children: <Widget>[
-                TextFormField(
-                  decoration: InputDecoration(
-                    hintText: "Username",
-                    hintStyle: mkFontColor(
-                      MkColors.light_grey.withOpacity(.8),
-                    ),
-                    prefixIcon: Icon(Icons.person_outline),
-                  ),
+        Form(
+          child: Column(
+            children: <Widget>[
+              TextFormField(
+                decoration: InputDecoration(
+                  hintText: "Username",
+                  prefixIcon: Icon(Icons.person_outline),
                 ),
-                SizedBox(height: 8.0),
-                TextFormField(
-                  decoration: InputDecoration(
-                    hintText: "Password",
-                    hintStyle: mkFontColor(
-                      MkColors.light_grey.withOpacity(.8),
-                    ),
-                    prefixIcon: Icon(Icons.lock),
-                  ),
+              ),
+              SizedBox(height: 8.0),
+              TextFormField(
+                decoration: InputDecoration(
+                  hintText: "Password",
+                  prefixIcon: Icon(Icons.lock),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
         SizedBox(height: 32.0),
         FlatButton(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(5.0),
-          ),
           color: MkColors.black,
           child: Text("Sign In", style: mkFontColor(MkColors.white)),
           onPressed: () {},
@@ -122,9 +112,11 @@ class _LoginPageState extends State<LoginPage> {
           child: CupertinoButton(
             child: Text(
               "Forgot Password?",
-              style: mkFont(12.0, MkColors.black),
+              style: mkFontRegular(16.0, MkColors.black),
             ),
-            onPressed: () {},
+            onPressed: () {
+              MkNavigate(context, ForgotPage());
+            },
           ),
         ),
         // SizedBox(height: 8.0),
@@ -135,7 +127,7 @@ class _LoginPageState extends State<LoginPage> {
           child: CupertinoButton(
             child: Text(
               "Sign In as Guest",
-              style: mkFont(12.0, MkColors.black),
+              style: mkFontRegular(16.0, MkColors.black),
             ),
             onPressed: () {},
           ),
@@ -148,51 +140,34 @@ class _LoginPageState extends State<LoginPage> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: <Widget>[
-        Theme(
-          data: Theme.of(context).copyWith(
-            hintColor: MkColors.light_grey.withOpacity(.3),
-          ),
-          child: Form(
-            child: Column(
-              children: <Widget>[
-                TextFormField(
-                  decoration: InputDecoration(
-                    hintText: "Username",
-                    hintStyle: mkFontColor(
-                      MkColors.light_grey.withOpacity(.8),
-                    ),
-                    prefixIcon: Icon(Icons.person_outline),
-                  ),
+        Form(
+          child: Column(
+            children: <Widget>[
+              TextFormField(
+                decoration: InputDecoration(
+                  hintText: "Username",
+                  prefixIcon: Icon(Icons.person_outline),
                 ),
-                SizedBox(height: 8.0),
-                TextFormField(
-                  decoration: InputDecoration(
-                    hintText: "Password",
-                    hintStyle: mkFontColor(
-                      MkColors.light_grey.withOpacity(.8),
-                    ),
-                    prefixIcon: Icon(Icons.lock),
-                  ),
+              ),
+              SizedBox(height: 8.0),
+              TextFormField(
+                decoration: InputDecoration(
+                  hintText: "Password",
+                  prefixIcon: Icon(Icons.lock),
                 ),
-                SizedBox(height: 8.0),
-                TextFormField(
-                  decoration: InputDecoration(
-                    hintText: "Email",
-                    hintStyle: mkFontColor(
-                      MkColors.light_grey.withOpacity(.8),
-                    ),
-                    prefixIcon: Icon(Icons.email),
-                  ),
+              ),
+              SizedBox(height: 8.0),
+              TextFormField(
+                decoration: InputDecoration(
+                  hintText: "Email",
+                  prefixIcon: Icon(Icons.email),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
         SizedBox(height: 32.0),
         FlatButton(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(5.0),
-          ),
           color: MkColors.black,
           child: Text("Sign Up", style: mkFontColor(MkColors.white)),
           onPressed: () {},
@@ -204,7 +179,7 @@ class _LoginPageState extends State<LoginPage> {
           child: CupertinoButton(
             child: Text(
               "Sign In",
-              style: mkFont(12.0, MkColors.black),
+              style: mkFontRegular(16.0, MkColors.black),
             ),
             onPressed: () {},
           ),
@@ -216,29 +191,28 @@ class _LoginPageState extends State<LoginPage> {
   Widget _buildSwitcherButton({
     Widget child,
     bool isActive = true,
-    VoidCallback onPress,
+    VoidCallback onPressed,
   }) {
-    return Material(
-      child: InkWell(
-        child: Container(
-          padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-          decoration: isActive
-              ? BoxDecoration(
-                  border: Border(bottom: BorderSide(width: 2.0)),
-                )
-              : null,
-          child: new DefaultTextStyle(
-            style: mkFont(
-              18.0,
-              isActive ? MkColors.black : MkColors.light_grey,
-            ).copyWith(
-              fontWeight: FontWeight.w500,
-            ),
-            child: child,
+    return CupertinoButton(
+      padding: EdgeInsets.zero,
+      child: Container(
+        padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+        decoration: isActive
+            ? BoxDecoration(
+                border: Border(bottom: BorderSide(width: 2.0)),
+              )
+            : null,
+        child: new DefaultTextStyle(
+          style: mkFont(
+            18.0,
+            isActive ? MkColors.black : MkColors.light_grey,
+          ).copyWith(
+            fontWeight: FontWeight.w500,
           ),
+          child: child,
         ),
-        onTap: onPress,
       ),
+      onPressed: onPressed,
     );
   }
 
@@ -250,14 +224,14 @@ class _LoginPageState extends State<LoginPage> {
           _buildSwitcherButton(
             child: Text("Sign In"),
             isActive: index == 1,
-            onPress: () {
+            onPressed: () {
               onChange(1);
             },
           ),
           _buildSwitcherButton(
             child: Text("Sign Up"),
             isActive: index == 2,
-            onPress: () {
+            onPressed: () {
               onChange(2);
             },
           ),

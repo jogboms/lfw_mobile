@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lfw_mobile/widgets/screens/login/login_page.dart';
+import 'package:lfw_mobile/widgets/screens/onboard/onboard_page.dart';
 
 class StartPage extends StatefulWidget {
   @override
@@ -9,6 +9,6 @@ class StartPage extends StatefulWidget {
 class StartPageState extends State<StartPage> {
   @override
   Widget build(BuildContext context) {
-    return LoginPage();
+    return OnboardPage();
   }
 }

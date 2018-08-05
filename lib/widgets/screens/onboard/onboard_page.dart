@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:lfw_mobile/constants/mk_colors.dart';
 import 'package:lfw_mobile/constants/mk_images.dart';
-import 'package:lfw_mobile/constants/mk_theme.dart';
 import 'package:lfw_mobile/utils/mk_navigate.dart';
+import 'package:lfw_mobile/utils/mk_theme.dart';
 import 'package:lfw_mobile/widgets/screens/login/login_page.dart';
 
 class OnboardPage extends StatefulWidget {
@@ -71,6 +71,7 @@ class OnboardPageState extends State<OnboardPage> {
                           ),
                         ],
                       ),
+                      style: mkFontMedium(14.0),
                       textAlign: TextAlign.center,
                     ),
                   ),
@@ -132,7 +133,7 @@ class OnboardPageState extends State<OnboardPage> {
         SizedBox(height: 32.0 * 1.0),
         Text(
           headers[index],
-          style: mkFontSize(24.0),
+          style: mkFontMedium(24.0),
           textAlign: TextAlign.center,
         ),
         SizedBox(height: 8.0),
@@ -140,7 +141,7 @@ class OnboardPageState extends State<OnboardPage> {
           padding: const EdgeInsets.symmetric(horizontal: 28.0),
           child: Text(
             content[index],
-            // style: fontSize(24.0),
+            style: mkFontSize(16.0),
             textAlign: TextAlign.center,
           ),
         ),
