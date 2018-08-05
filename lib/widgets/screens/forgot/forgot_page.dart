@@ -15,10 +15,10 @@ class ForgotPage extends StatelessWidget {
         elevation: 0.0,
       ),
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 48.0),
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.symmetric(horizontal: 32.0),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.end,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
               SizedBox(height: 64.0 * 1.5),
@@ -44,6 +44,7 @@ class ForgotPage extends StatelessWidget {
                   hintText: "Email",
                   prefixIcon: Icon(Icons.email),
                 ),
+                scrollPadding: EdgeInsets.only(bottom: 40.0),
               ),
               SizedBox(height: 32.0),
               FlatButton(
@@ -54,7 +55,7 @@ class ForgotPage extends StatelessWidget {
                 ),
                 onPressed: () {},
               ),
-              Expanded(child: SizedBox()),
+              SizedBox(height: 16.0),
               Align(
                 // alignment: Alignment(-1.25, 0.0),
                 alignment: Alignment.bottomCenter,
