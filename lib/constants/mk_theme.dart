@@ -42,9 +42,12 @@ class MkStyle extends TextStyle {
         );
 }
 
-TextStyle fontSize(double fontSize) => TextStyle(fontSize: fontSize);
+TextStyle mkFont(double fontSize, Color color) =>
+    TextStyle(fontSize: fontSize, color: color);
 
-TextStyle fontColor(Color color) => TextStyle(color: color);
+TextStyle mkFontSize(double fontSize) => TextStyle(fontSize: fontSize);
+
+TextStyle mkFontColor(Color color) => TextStyle(color: color);
 
 TextStyle poppinsThin(double fontSize, [Color color]) =>
     new MkStyle.poppins(fontSize, FontWeight.w100, color ?? kTextBaseColor);

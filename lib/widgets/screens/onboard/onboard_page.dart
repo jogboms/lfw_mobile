@@ -65,7 +65,7 @@ class OnboardPageState extends State<OnboardPage> {
                           ),
                           TextSpan(
                             text: "0 ${config.itemCount}",
-                            style: fontColor(Colors.grey),
+                            style: mkFontColor(Colors.grey),
                           ),
                         ],
                       ),
@@ -83,7 +83,7 @@ class OnboardPageState extends State<OnboardPage> {
                             child: Text(
                               _isFinal ? "Get Started" : "Skip",
                               textAlign: TextAlign.center,
-                              style: fontColor(Colors.white),
+                              style: mkFontColor(Colors.white),
                             ),
                           ),
                         ),
@@ -129,7 +129,7 @@ class OnboardPageState extends State<OnboardPage> {
         SizedBox(height: 32.0 * 1.0),
         Text(
           headers[index],
-          style: fontSize(24.0),
+          style: mkFontSize(24.0),
           textAlign: TextAlign.center,
         ),
         SizedBox(height: 8.0),
