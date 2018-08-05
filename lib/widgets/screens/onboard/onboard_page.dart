@@ -3,6 +3,8 @@ import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:lfw_mobile/constants/mk_colors.dart';
 import 'package:lfw_mobile/constants/mk_images.dart';
 import 'package:lfw_mobile/constants/mk_theme.dart';
+import 'package:lfw_mobile/utils/mk_navigate.dart';
+import 'package:lfw_mobile/widgets/screens/login/login_page.dart';
 
 class OnboardPage extends StatefulWidget {
   @override
@@ -90,9 +92,10 @@ class OnboardPageState extends State<OnboardPage> {
                       ),
                       onTap: () {
                         if (_isFinal) {
-                          return print("Yay!");
+                          MkNavigate(context, LoginPage());
+                        } else {
+                          _controller.move(config.itemCount - 1);
                         }
-                        _controller.move(config.itemCount - 1);
                       },
                     ),
                   ),
