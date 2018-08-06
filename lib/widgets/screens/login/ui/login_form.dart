@@ -46,13 +46,10 @@ class LoginForm extends StatelessWidget {
           },
         ),
         SizedBox(height: 16.0),
-        FlatButton(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(5.0),
-            side: BorderSide(color: MkColors.black),
-          ),
+        OutlineButton(
           child: Text("Login with Facebook"),
           onPressed: () {},
+          borderSide: BorderSide(color: MkColors.black, width: 2.5),
         ),
         SizedBox(height: 8.0),
         Align(
