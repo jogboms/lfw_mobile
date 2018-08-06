@@ -20,15 +20,19 @@ flutter:
    - assets/icons/
 
   fonts:
-    - family: SF UI Display
+    - family:  MkIcons
       fonts:
-        - asset: assets/fonts/SF-UI-Display-Light.ttf
+       - asset: assets/fonts/MkIcons.ttf
+
+    - family: Source Code Pro
+      fonts:
+        - asset: assets/fonts/SourceCodePro-Light.ttf
           weight: 200
-        - asset: assets/fonts/SF-UI-Display-Regular.ttf
+        - asset: assets/fonts/SourceCodePro-Regular.ttf
           weight: 400
-        - asset: assets/fonts/SF-UI-Display-Medium.ttf
+        - asset: assets/fonts/SourceCodePro-Medium.ttf
           weight: 500
-        - asset: assets/fonts/SF-UI-Display-SemiBold.ttf
+        - asset: assets/fonts/SourceCodePro-SemiBold.ttf
           weight: 600
-        - asset: assets/fonts/SF-UI-Display-Bold.ttf
+        - asset: assets/fonts/SourceCodePro-Bold.ttf
           weight: 900

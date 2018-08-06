@@ -78,7 +78,7 @@ class _LoginPageState extends State<LoginPage> {
               )
             : null,
         child: new DefaultTextStyle(
-          style: mkFont(
+          style: mkFontMedium(
             16.0,
             isActive ? MkColors.black : MkColors.light_grey,
           ).copyWith(

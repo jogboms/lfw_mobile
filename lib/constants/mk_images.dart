@@ -15,6 +15,4 @@ class MkImages {
   static const ImageProvider img_1 = AssetImage('assets/images/img_1.png');
   static const ImageProvider img_2 = AssetImage('assets/images/img_2.png');
   static const ImageProvider img_3 = AssetImage('assets/images/img_3.png');
-  static const ImageProvider forgot_logo =
-      AssetImage('assets/images/forgot_logo.png');
 }

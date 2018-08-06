@@ -51,7 +51,7 @@ class App extends StatelessWidget {
                 color: MkColors.light_grey.withOpacity(.3),
               ),
             ),
-            contentPadding: EdgeInsets.only(top: 15.0),
+            contentPadding: EdgeInsets.only(top: 13.0),
             hintStyle: mkFont(
               16.0,
               MkColors.light_grey.withOpacity(.8),

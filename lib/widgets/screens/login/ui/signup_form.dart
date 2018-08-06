@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:lfw_mobile/partials/mk_clear_button.dart';
-import 'package:lfw_mobile/partials/mk_primary_button.dart';
+import 'package:lfw_mobile/constants/mk_icons.dart';
+import 'package:lfw_mobile/widgets/partials/mk_clear_button.dart';
+import 'package:lfw_mobile/widgets/partials/mk_primary_button.dart';
 
 class SignupForm extends StatelessWidget {
   const SignupForm({
@@ -19,7 +20,7 @@ class SignupForm extends StatelessWidget {
               TextFormField(
                 decoration: InputDecoration(
                   hintText: "Username",
-                  prefixIcon: Icon(Icons.person_outline),
+                  prefixIcon: Icon(MkIcons.User),
                 ),
                 scrollPadding: EdgeInsets.only(bottom: 40.0),
               ),
@@ -27,7 +28,7 @@ class SignupForm extends StatelessWidget {
               TextFormField(
                 decoration: InputDecoration(
                   hintText: "Password",
-                  prefixIcon: Icon(Icons.lock),
+                  prefixIcon: Icon(MkIcons.Lock),
                 ),
                 scrollPadding: EdgeInsets.only(bottom: 40.0),
               ),
@@ -35,7 +36,7 @@ class SignupForm extends StatelessWidget {
               TextFormField(
                 decoration: InputDecoration(
                   hintText: "Email",
-                  prefixIcon: Icon(Icons.email),
+                  prefixIcon: Icon(MkIcons.Mail),
                 ),
                 scrollPadding: EdgeInsets.only(bottom: 40.0),
               ),

@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:lfw_mobile/constants/mk_images.dart';
+import 'package:lfw_mobile/constants/mk_icons.dart';
 import 'package:lfw_mobile/constants/mk_style.dart';
-import 'package:lfw_mobile/partials/mk_clear_button.dart';
-import 'package:lfw_mobile/partials/mk_primary_button.dart';
 import 'package:lfw_mobile/utils/mk_theme.dart';
+import 'package:lfw_mobile/widgets/partials/mk_clear_button.dart';
+import 'package:lfw_mobile/widgets/partials/mk_primary_button.dart';
 
 class ForgotPage extends StatelessWidget {
   @override
@@ -23,8 +23,8 @@ class ForgotPage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
               SizedBox(height: 64.0 * 1.5),
-              ImageIcon(
-                MkImages.forgot_logo,
+              Icon(
+                MkIcons.Lock_Rotation,
                 size: 70.0,
               ),
               SizedBox(height: 64.0),
@@ -35,7 +35,7 @@ class ForgotPage extends StatelessWidget {
               ),
               SizedBox(height: 16.0),
               Text(
-                "Enter your email below recevice your password reset instructions.",
+                "Enter your email below to receive password reset instructions.",
                 textAlign: TextAlign.center,
                 style: mkFontRegular(16.0),
               ),
@@ -43,7 +43,7 @@ class ForgotPage extends StatelessWidget {
               TextField(
                 decoration: InputDecoration(
                   hintText: "Email",
-                  prefixIcon: Icon(Icons.email),
+                  prefixIcon: Icon(MkIcons.Mail),
                 ),
                 scrollPadding: EdgeInsets.only(bottom: 40.0),
               ),

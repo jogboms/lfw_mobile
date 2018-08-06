@@ -1,10 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:lfw_mobile/constants/mk_icons.dart';
 import 'package:lfw_mobile/constants/mk_images.dart';
-import 'package:lfw_mobile/partials/mk_primary_button.dart';
+import 'package:lfw_mobile/utils/mk_navigate.dart';
 import 'package:lfw_mobile/utils/mk_theme.dart';
+import 'package:lfw_mobile/widgets/partials/mk_clear_button.dart';
+import 'package:lfw_mobile/widgets/partials/mk_primary_button.dart';
+import 'package:lfw_mobile/widgets/screens/events/events_page.dart';
 
 class CollectionsPage extends StatefulWidget {
   @override
@@ -38,48 +42,47 @@ class _CollectionsPageState extends State<CollectionsPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      fit: StackFit.expand,
-      children: <Widget>[
-        new Swiper(
-          itemBuilder: _slideBuilder,
-          itemCount: images.length,
-          autoplay: true,
-          duration: 1500,
-          autoplayDelay: 5000,
-          pagination: SwiperPagination(
-            margin: EdgeInsets.only(bottom: 36.0),
-          ),
-        ),
-        SafeArea(
-          bottom: false,
-          child: Align(
-            alignment: Alignment.topCenter,
-            child: SizedBox(
-              height: kToolbarHeight,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  CupertinoButton(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Image(
-                      image: MkIcons.menu,
-                    ),
-                    onPressed: () {},
-                  ),
-                  CupertinoButton(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Image(
-                      image: MkIcons.search,
-                    ),
-                    onPressed: () {},
-                  ),
-                ],
+    return Scaffold(
+      body: new AnnotatedRegion<SystemUiOverlayStyle>(
+        value: SystemUiOverlayStyle.dark,
+        child: Stack(
+          fit: StackFit.expand,
+          children: <Widget>[
+            new Swiper(
+              itemBuilder: _slideBuilder,
+              itemCount: images.length,
+              autoplay: true,
+              duration: 1500,
+              autoplayDelay: 5000,
+              pagination: SwiperPagination(
+                margin: EdgeInsets.only(bottom: 36.0),
               ),
             ),
-          ),
+            SafeArea(
+              bottom: false,
+              child: Align(
+                alignment: Alignment.topCenter,
+                child: SizedBox(
+                  height: kToolbarHeight,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      MkClearButton(
+                        child: Icon(MkIcons.List___Alt),
+                        onPressed: () {},
+                      ),
+                      MkClearButton(
+                        child: Icon(MkIcons.Loupe),
+                        onPressed: () {},
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ],
         ),
-      ],
+      ),
     );
   }
 
@@ -98,13 +101,14 @@ class _CollectionsPageState extends State<CollectionsPage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Text(titles[index], style: mkFontRegular(12.0)),
+              SizedBox(height: 4.0),
               LayoutBuilder(
                 builder: (_, BoxConstraints constraints) {
                   return SizedBox(
                     width: constraints.maxWidth / 2,
                     child: Text(
                       headers[index],
-                      style: mkFontBold(24.0).copyWith(height: 1.25),
+                      style: mkFontBold(24.0).copyWith(height: 1.05),
                     ),
                   );
                 },
@@ -116,8 +120,7 @@ class _CollectionsPageState extends State<CollectionsPage> {
                 padding: EdgeInsets.symmetric(horizontal: 24.0),
                 child: Text("See More"),
                 onPressed: () {
-                  print("Yay");
-                  // MkNavigate(context, CollectionsPage());
+                  MkNavigate(context, EventsPage());
                 },
               ),
               SizedBox(height: 64.0 * 2),

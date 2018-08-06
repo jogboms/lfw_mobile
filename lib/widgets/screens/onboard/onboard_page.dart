@@ -27,7 +27,7 @@ class OnboardPageState extends State<OnboardPage> {
 
   final List<String> content = [
     "Free Beauty Samples, What They Are And How To Find Them.",
-    "Veniam occaecat ex veniam tempor sunt laborum mollit Lorem nisi aute.",
+    "Veniam occaecat ex veniam tempor sunt laborum mollit.",
     "Cosmetic Surgery A Review Of Facial Surgery With Personal",
   ];
 
@@ -126,15 +126,15 @@ class OnboardPageState extends State<OnboardPage> {
           SizedBox(height: 24.0),
           Text(
             headers[index],
-            style: mkFontMedium(24.0),
+            style: mkFontMedium(20.0),
             textAlign: TextAlign.center,
           ),
           SizedBox(height: 8.0),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 28.0),
+            padding: const EdgeInsets.symmetric(horizontal: 2.0),
             child: Text(
               content[index],
-              style: mkFontSize(16.0),
+              style: mkFontSize(14.0),
               textAlign: TextAlign.center,
             ),
           ),

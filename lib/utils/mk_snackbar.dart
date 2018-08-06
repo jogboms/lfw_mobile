@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lfw_mobile/partials/mk_loading_snackbar.dart';
+import 'package:lfw_mobile/widgets/partials/mk_loading_snackbar.dart';
 
 abstract class MkSnackBarProvider {
   GlobalKey<ScaffoldState> get scaffoldKey;

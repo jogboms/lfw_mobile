@@ -1,5 +1,5 @@
 class MkFonts {
   MkFonts._();
 
-  static const String base = "SF UI Display";
+  static const String base = "Source Code Pro";
 }
