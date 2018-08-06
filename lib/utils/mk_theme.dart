@@ -33,6 +33,7 @@ class MkStyle extends TextStyle {
           textBaseline: TextBaseline.alphabetic,
         );
 
+  static FontWeight light = FontWeight.w200;
   static FontWeight regular = FontWeight.w400;
   static FontWeight medium = FontWeight.w600;
   static FontWeight semibold = FontWeight.w700;
@@ -46,6 +47,8 @@ TextStyle mkFontSize(double fontSize) => TextStyle(fontSize: fontSize);
 
 TextStyle mkFontColor(Color color) => TextStyle(color: color);
 
+TextStyle mkFontLight(double fontSize, [Color color]) =>
+    new MkStyle.mkFont(fontSize, MkStyle.light, color ?? kTextBaseColor);
 TextStyle mkFontRegular(double fontSize, [Color color]) =>
     new MkStyle.mkFont(fontSize, MkStyle.regular, color ?? kTextBaseColor);
 TextStyle mkFontMedium(double fontSize, [Color color]) =>
