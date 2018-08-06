@@ -56,7 +56,7 @@ class OnboardPageState extends State<OnboardPage> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
                 Padding(
-                  padding: EdgeInsets.only(top: media.padding.top + 25.0),
+                  padding: EdgeInsets.only(top: media.padding.top + 16.0),
                   child: Text.rich(
                     TextSpan(
                       children: [
