@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:lfw_mobile/constants/mk_colors.dart';
-import 'package:lfw_mobile/utils/mk_theme.dart';
+import 'package:lfw_mobile/partials/mk_clear_button.dart';
+import 'package:lfw_mobile/partials/mk_primary_button.dart';
 
 class SignupForm extends StatelessWidget {
   const SignupForm({
@@ -43,20 +43,16 @@ class SignupForm extends StatelessWidget {
           ),
         ),
         SizedBox(height: 32.0),
-        FlatButton(
-          color: MkColors.black,
-          child: Text("Sign Up", style: mkFontColor(MkColors.white)),
+        MkPrimaryButton(
+          child: Text("Sign Up"),
           onPressed: () {},
         ),
         SizedBox(height: 16.0),
         Align(
           // alignment: Alignment(-1.25, 0.0),
           alignment: Alignment.bottomCenter,
-          child: CupertinoButton(
-            child: Text(
-              "Sign In",
-              style: mkFontRegular(16.0, MkColors.black),
-            ),
+          child: MkClearButton(
+            child: Text("Sign In"),
             onPressed: () {},
           ),
         ),

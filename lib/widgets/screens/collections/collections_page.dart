@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
-import 'package:lfw_mobile/constants/mk_colors.dart';
 import 'package:lfw_mobile/constants/mk_icons.dart';
 import 'package:lfw_mobile/constants/mk_images.dart';
+import 'package:lfw_mobile/partials/mk_primary_button.dart';
 import 'package:lfw_mobile/utils/mk_theme.dart';
 
 class CollectionsPage extends StatefulWidget {
@@ -112,10 +112,9 @@ class _CollectionsPageState extends State<CollectionsPage> {
               SizedBox(height: 16.0),
               Text(counts[index], style: mkFontRegular(14.0, Colors.grey)),
               SizedBox(height: 16.0),
-              FlatButton(
-                color: MkColors.black,
+              MkPrimaryButton(
                 padding: EdgeInsets.symmetric(horizontal: 24.0),
-                child: Text("See More", style: mkFontColor(MkColors.white)),
+                child: Text("See More"),
                 onPressed: () {
                   print("Yay");
                   // MkNavigate(context, CollectionsPage());
