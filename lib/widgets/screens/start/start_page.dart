@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lfw_mobile/widgets/screens/onboard/onboard_page.dart';
+import 'package:glam/widgets/screens/onboard/onboard_page.dart';
 
 class StartPage extends StatefulWidget {
   @override

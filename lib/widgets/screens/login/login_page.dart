@@ -1,10 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:lfw_mobile/constants/mk_colors.dart';
-import 'package:lfw_mobile/constants/mk_images.dart';
-import 'package:lfw_mobile/utils/mk_theme.dart';
-import 'package:lfw_mobile/widgets/screens/login/ui/login_form.dart';
-import 'package:lfw_mobile/widgets/screens/login/ui/signup_form.dart';
+import 'package:flutter/services.dart';
+import 'package:glam/constants/mk_colors.dart';
+import 'package:glam/constants/mk_images.dart';
+import 'package:glam/utils/mk_theme.dart';
+import 'package:glam/widgets/screens/login/ui/login_form.dart';
+import 'package:glam/widgets/screens/login/ui/signup_form.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -17,46 +18,42 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-      body: SafeArea(
-        child: SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(horizontal: 32.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              SizedBox(height: 32.0 * 1.5),
-              Center(
-                child: ImageIcon(
-                  MkImages.glam,
-                  color: MkColors.black,
-                  size: 100.0,
+      body: new AnnotatedRegion<SystemUiOverlayStyle>(
+        value: SystemUiOverlayStyle.dark,
+        child: SafeArea(
+          child: SingleChildScrollView(
+            padding: const EdgeInsets.symmetric(horizontal: 32.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                SizedBox(height: 32.0 * 1.5),
+                Center(
+                  child: ImageIcon(
+                    MkImages.glam,
+                    color: MkColors.black,
+                    size: 100.0,
+                  ),
                 ),
-              ),
-              SizedBox(height: 24.0),
-              _buildSwitcher(
-                index: activeIndex,
-                onChange: (index) {
-                  if (activeIndex == index) {
-                    return;
-                  }
-                  setState(() {
-                    activeIndex = index;
-                  });
-                },
-              ),
-              SizedBox(height: 24.0),
-              LayoutBuilder(builder: (_, __) {
-                return AnimatedCrossFade(
-                  duration: const Duration(milliseconds: 150),
-                  firstChild: new LoginForm(),
-                  secondChild: new SignupForm(),
-                  crossFadeState: activeIndex == 1
-                      ? CrossFadeState.showFirst
-                      : CrossFadeState.showSecond,
-                );
-              }),
-            ],
+                SizedBox(height: 24.0),
+                _buildSwitcher(
+                  index: activeIndex,
+                  onChange: onSwitchIndex,
+                ),
+                SizedBox(height: 24.0),
+                LayoutBuilder(builder: (_, __) {
+                  return AnimatedCrossFade(
+                    duration: const Duration(milliseconds: 150),
+                    firstChild: new LoginForm(),
+                    secondChild: new SignupForm(onSwitchIndex: onSwitchIndex),
+                    crossFadeState: activeIndex == 1
+                        ? CrossFadeState.showFirst
+                        : CrossFadeState.showSecond,
+                  );
+                }),
+              ],
+            ),
           ),
         ),
       ),
@@ -78,12 +75,9 @@ class _LoginPageState extends State<LoginPage> {
               )
             : null,
         child: new DefaultTextStyle(
-          style: mkFontMedium(
-            16.0,
-            isActive ? MkColors.black : MkColors.light_grey,
-          ).copyWith(
-            fontWeight: MkStyle.medium,
-          ),
+          style: MkTheme.of(context).subhead1.copyWith(
+                color: isActive ? MkColors.black : MkColors.light_grey,
+              ),
           child: child,
         ),
       ),
@@ -113,5 +107,14 @@ class _LoginPageState extends State<LoginPage> {
         ],
       ),
     );
+  }
+
+  void onSwitchIndex(int index) {
+    if (activeIndex == index) {
+      return;
+    }
+    setState(() {
+      activeIndex = index;
+    });
   }
 }

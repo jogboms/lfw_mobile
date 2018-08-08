@@ -1,11 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
-import 'package:lfw_mobile/constants/mk_colors.dart';
-import 'package:lfw_mobile/constants/mk_images.dart';
-import 'package:lfw_mobile/utils/mk_navigate.dart';
-import 'package:lfw_mobile/utils/mk_theme.dart';
-import 'package:lfw_mobile/widgets/screens/login/login_page.dart';
+import 'package:glam/constants/mk_colors.dart';
+import 'package:glam/constants/mk_images.dart';
+import 'package:glam/constants/mk_style.dart';
+import 'package:glam/utils/mk_navigate.dart';
+import 'package:glam/utils/mk_theme.dart';
+import 'package:glam/widgets/partials/mk_clear_button.dart';
+import 'package:glam/widgets/screens/login/login_page.dart';
 
 class OnboardPage extends StatefulWidget {
   @override
@@ -81,11 +83,13 @@ class OnboardPageState extends State<OnboardPage> {
                   padding: EdgeInsets.only(
                     bottom: MediaQuery.of(context).padding.bottom,
                   ),
-                  child: CupertinoButton(
+                  child: MkClearButton(
                     child: Text(
                       _isFinal ? "Get Started" : "Skip",
                       textAlign: TextAlign.center,
-                      style: mkFontMedium(16.0, Colors.white),
+                      style: MkTheme.of(context)
+                          .button
+                          .copyWith(color: Colors.white),
                     ),
                     onPressed: () {
                       if (_isFinal) {
@@ -101,7 +105,7 @@ class OnboardPageState extends State<OnboardPage> {
           },
         ),
         controller: _controller,
-        viewportFraction: 0.75,
+        viewportFraction: 0.85,
         scale: 0.9,
       ),
     );
@@ -114,28 +118,30 @@ class OnboardPageState extends State<OnboardPage> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           SizedBox(
-            width: media.size.height / 2.9,
+            width: media.size.height / 2.5,
+            height: media.size.height / 1.85,
             child: Material(
               borderRadius: BorderRadius.circular(5.0),
               child: new Image(
                 image: images[index],
-                fit: BoxFit.fill,
+                alignment: Alignment.topCenter,
+                fit: BoxFit.cover,
               ),
             ),
           ),
           SizedBox(height: 24.0),
           Text(
             headers[index],
-            style: mkFontMedium(20.0),
+            style: MkTheme.of(context).title,
             textAlign: TextAlign.center,
           ),
           SizedBox(height: 8.0),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 2.0),
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
             child: Text(
               content[index],
-              style: mkFontSize(14.0),
               textAlign: TextAlign.center,
+              style: MkTheme.of(context).body2,
             ),
           ),
         ],

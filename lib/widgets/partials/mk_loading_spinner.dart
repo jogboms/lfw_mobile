@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:glam/constants/mk_style.dart';
 
 Widget mkLoadingSpinner({Color color}) {
   return Center(
-    child: SizedBox.fromSize(
-      size: Size.square(24.0),
-      child: CircularProgressIndicator(backgroundColor: color),
+    child: SpinKitThreeBounce(
+      color: color ?? kPrimaryColor,
+      size: 30.0,
     ),
   );
 }

@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:lfw_mobile/utils/mk_theme.dart';
+import 'package:glam/utils/mk_theme.dart';
 
 class MkClearButton extends StatelessWidget {
   final Widget child;
@@ -15,7 +15,7 @@ class MkClearButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return CupertinoButton(
       child: DefaultTextStyle(
-        style: mkFontRegular(16.0),
+        style: MkTheme.of(context).body3,
         child: child,
       ),
       onPressed: onPressed,

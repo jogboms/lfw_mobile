@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:lfw_mobile/constants/mk_style.dart';
-import 'package:lfw_mobile/utils/mk_theme.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:glam/constants/mk_style.dart';
 
 class MkLoadingSnackBar extends SnackBar {
   MkLoadingSnackBar({Key key, Widget content})
@@ -14,16 +14,16 @@ class MkLoadingSnackBar extends SnackBar {
             children: [
               SizedBox.fromSize(
                 size: Size(48.0, 24.0),
-                // child: SpinKitThreeBounce(
-                //   color: content == null ? kPrimaryColor : Colors.white,
-                //   size: 24.0,
-                // ),
+                child: SpinKitThreeBounce(
+                  color: content == null ? kPrimaryColor : Colors.white,
+                  size: 24.0,
+                ),
               ),
               SizedBox(width: content == null ? 0.0 : 16.0),
               content == null
                   ? SizedBox()
                   : new DefaultTextStyle(
-                      style: mkFont(14.0, Colors.white),
+                      style: mkFontColor(kAccentColor),
                       child: content,
                     ),
             ],

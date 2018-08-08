@@ -1,4 +1,4 @@
-name: lfw_mobile
+name: glam
 description: Lagos Fashion Week Mobile App.
 version: 0.0.1+1
 
@@ -7,6 +7,8 @@ dependencies:
     sdk: flutter
   cupertino_icons: ^0.1.2
   flutter_swiper: ^1.0.4
+  photo_view: ^0.0.2
+  flutter_spinkit: ^2.0.0
 
 dev_dependencies:
   flutter_test:
@@ -31,8 +33,8 @@ flutter:
         - asset: assets/fonts/SourceCodePro-Regular.ttf
           weight: 400
         - asset: assets/fonts/SourceCodePro-Medium.ttf
-          weight: 500
-        - asset: assets/fonts/SourceCodePro-SemiBold.ttf
           weight: 600
+        - asset: assets/fonts/SourceCodePro-SemiBold.ttf
+          weight: 700
         - asset: assets/fonts/SourceCodePro-Bold.ttf
           weight: 900

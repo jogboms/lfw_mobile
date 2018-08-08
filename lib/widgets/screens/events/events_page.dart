@@ -1,15 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
-import 'package:lfw_mobile/constants/mk_colors.dart';
-import 'package:lfw_mobile/constants/mk_icons.dart';
-import 'package:lfw_mobile/constants/mk_images.dart';
-import 'package:lfw_mobile/utils/mk_navigate.dart';
-import 'package:lfw_mobile/utils/mk_theme.dart';
-import 'package:lfw_mobile/widgets/partials/mk_clear_button.dart';
-import 'package:lfw_mobile/widgets/partials/mk_primary_button.dart';
-import 'package:lfw_mobile/widgets/screens/events/event_page.dart';
-import 'package:lfw_mobile/widgets/screens/events/ui/swiper_mode.dart';
+import 'package:glam/constants/mk_colors.dart';
+import 'package:glam/constants/mk_icons.dart';
+import 'package:glam/constants/mk_images.dart';
+import 'package:glam/utils/mk_navigate.dart';
+import 'package:glam/utils/mk_theme.dart';
+import 'package:glam/widgets/partials/mk_clear_button.dart';
+import 'package:glam/widgets/partials/mk_primary_button.dart';
+import 'package:glam/widgets/screens/events/event_page.dart';
+import 'package:glam/widgets/screens/events/ui/swiper_mode.dart';
 
 class EventsPage extends StatefulWidget {
   @override
@@ -55,24 +55,34 @@ class _EventsPageState extends State<EventsPage> {
         ),
         actions: <Widget>[
           MkClearButton(
-            child: Icon(MkIcons.Loupe, color: Colors.white),
+            child: Icon(MkIcons.Loupe___Alt, color: Colors.white),
             onPressed: () {},
           ),
         ],
       ),
       body: SafeArea(
         top: false,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Text("Events", style: mkFontMedium(32.0, Colors.white)),
-              SizedBox(height: 24.0),
-              Expanded(
-                child: LayoutBuilder(
-                  builder: (_, BoxConstraints constraints) {
-                    return SwiperMode(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              child: Text(
+                "Events",
+                style: MkTheme.of(context).display3.copyWith(
+                      color: Colors.white,
+                    ),
+              ),
+            ),
+            SizedBox(height: 24.0),
+            Expanded(
+              child: LayoutBuilder(
+                builder: (_, BoxConstraints constraints) {
+                  return Padding(
+                    // padding: const EdgeInsets.only(right: 16.0),
+                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                    child: SwiperMode(
+                      width: constraints.maxWidth,
                       height: constraints.maxHeight,
                       controller: _controller,
                       images: images,
@@ -83,46 +93,54 @@ class _EventsPageState extends State<EventsPage> {
                           activeIndex = index;
                         });
                       },
-                    );
-                  },
-                ),
+                      onTapped: _onTapItem,
+                    ),
+                  );
+                },
               ),
-              SizedBox(height: 16.0),
-              Row(
+            ),
+            SizedBox(height: 16.0),
+            Padding(
+              padding: const EdgeInsets.only(left: 16.0),
+              child: Row(
                 children: <Widget>[
                   MkPrimaryButton(
                     padding: EdgeInsets.symmetric(horizontal: 24.0),
                     child: Text("Explore"),
                     onPressed: () {
-                      MkNavigate(
-                        context,
-                        EventPage(
-                          tag: "tagger-$activeIndex",
-                          image: images[activeIndex],
-                          title: headers[activeIndex],
-                        ),
-                      );
+                      _onTapItem(activeIndex);
                     },
                   ),
                   Expanded(child: SizedBox()),
                   MkClearButton(
-                    child: Icon(MkIcons.Arrow___Left, color: Colors.white),
+                    child: Icon(MkIcons.Chevon___Left, color: Colors.white),
                     onPressed: () {
                       _controller.previous();
                     },
                   ),
                   MkClearButton(
-                    child: Icon(MkIcons.Arrow___Right, color: Colors.white),
+                    child: Icon(MkIcons.Chevron___Right, color: Colors.white),
                     onPressed: () {
                       _controller.next();
                     },
                   ),
                 ],
               ),
-              SizedBox(height: 8.0),
-            ],
-          ),
+            ),
+            SizedBox(height: 16.0),
+          ],
         ),
+      ),
+    );
+  }
+
+  void _onTapItem(int index) {
+    MkNavigate(
+      context,
+      EventPage(
+        tag: "tagger-$activeIndex",
+        image: images[index],
+        title: headers[index],
       ),
     );
   }

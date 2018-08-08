@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:lfw_mobile/constants/mk_colors.dart';
-import 'package:lfw_mobile/utils/mk_theme.dart';
+import 'package:glam/constants/mk_colors.dart';
+import 'package:glam/utils/mk_theme.dart';
 
 class MkOutlineButton extends StatelessWidget {
   final Widget child;
@@ -19,7 +19,7 @@ class MkOutlineButton extends StatelessWidget {
     return OutlineButton(
       padding: padding,
       child: DefaultTextStyle(
-        style: mkFontMedium(16.0, MkColors.black),
+        style: MkTheme.of(context).button,
         child: child,
       ),
       onPressed: onPressed,

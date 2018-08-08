@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
-import 'package:lfw_mobile/utils/mk_theme.dart';
+import 'package:glam/utils/mk_theme.dart';
 
 class SwiperMode extends StatefulWidget {
   final double height;
+  final double width;
   final SwiperController controller;
   final void Function(int) onIndexChanged;
+  final void Function(int) onTapped;
   final List<ImageProvider> images;
   final List<String> headers;
   final List<String> content;
@@ -14,10 +16,12 @@ class SwiperMode extends StatefulWidget {
     Key key,
     this.controller,
     this.onIndexChanged,
+    this.width,
     this.height,
     this.images,
     this.headers,
     this.content,
+    this.onTapped,
   }) : super(key: key);
 
   @override
@@ -31,33 +35,40 @@ class SwiperModeState extends State<SwiperMode> {
     return new Swiper(
       itemBuilder: _slideBuilder(media),
       itemCount: 3,
-      loop: false,
+      onTap: widget.onTapped,
       controller: widget.controller,
       onIndexChanged: widget.onIndexChanged,
-      viewportFraction: 0.95,
+      viewportFraction: 0.85,
       containerHeight: widget.height,
-      scale: 0.95,
+      autoplay: true,
+      duration: 1500,
+      autoplayDelay: 10000,
+      fade: 0.15,
     );
   }
 
   IndexedWidgetBuilder _slideBuilder(MediaQueryData media) {
     return (BuildContext context, int index) {
       return Align(
-        // alignment: Alignment.centerLeft,
         alignment: Alignment.topLeft,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            SizedBox(
-              width: widget.height / 2.25,
-              child: Material(
-                borderRadius: BorderRadius.circular(5.0),
-                child: Hero(
-                  tag: "tagger-$index",
-                  child: new Image(
-                    image: widget.images[index],
-                    fit: BoxFit.fill,
+            Align(
+              alignment: Alignment.centerLeft,
+              child: SizedBox(
+                width: widget.width / 1.325,
+                height: widget.height / 1.445,
+                child: Material(
+                  borderRadius: BorderRadius.circular(5.0),
+                  child: Hero(
+                    tag: "tagger-$index",
+                    child: new Image(
+                      image: widget.images[index],
+                      alignment: Alignment.topCenter,
+                      fit: BoxFit.cover,
+                    ),
                   ),
                 ),
               ),
@@ -66,18 +77,20 @@ class SwiperModeState extends State<SwiperMode> {
             LayoutBuilder(
               builder: (_, BoxConstraints constraints) {
                 return SizedBox(
-                  width: constraints.maxWidth / 1.5,
+                  width: constraints.maxWidth / 1.15,
                   child: Text(
                     widget.headers[index],
-                    style: mkFont(24.0, Colors.white),
+                    style: MkTheme.of(context)
+                        .display2
+                        .copyWith(color: Colors.white),
                   ),
                 );
               },
             ),
-            SizedBox(height: 42.0),
+            SizedBox(height: 24.0),
             Text(
               widget.content[index],
-              style: mkFont(14.0, Colors.white),
+              style: MkTheme.of(context).subhead2.copyWith(color: Colors.white),
             ),
           ],
         ),

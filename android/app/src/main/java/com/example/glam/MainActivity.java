@@ -1,4 +1,4 @@
-package com.example.lfwmobile;
+package com.example.glam;
 
 import android.os.Bundle;
 import io.flutter.app.FlutterActivity;

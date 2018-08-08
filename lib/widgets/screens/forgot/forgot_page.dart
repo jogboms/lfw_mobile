@@ -1,10 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:lfw_mobile/constants/mk_icons.dart';
-import 'package:lfw_mobile/constants/mk_style.dart';
-import 'package:lfw_mobile/utils/mk_theme.dart';
-import 'package:lfw_mobile/widgets/partials/mk_clear_button.dart';
-import 'package:lfw_mobile/widgets/partials/mk_primary_button.dart';
+import 'package:glam/constants/mk_icons.dart';
+import 'package:glam/constants/mk_style.dart';
+import 'package:glam/utils/mk_theme.dart';
+import 'package:glam/widgets/partials/mk_back_button.dart';
+import 'package:glam/widgets/partials/mk_clear_button.dart';
+import 'package:glam/widgets/partials/mk_primary_button.dart';
 
 class ForgotPage extends StatelessWidget {
   @override
@@ -14,6 +15,7 @@ class ForgotPage extends StatelessWidget {
         backgroundColor: kAccentColor,
         brightness: Brightness.light,
         elevation: 0.0,
+        leading: MkBackButton(),
       ),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -31,19 +33,19 @@ class ForgotPage extends StatelessWidget {
               Text(
                 "Forgot your password?",
                 textAlign: TextAlign.center,
-                style: mkFontMedium(20.0),
+                style: MkTheme.of(context).title,
               ),
               SizedBox(height: 16.0),
               Text(
                 "Enter your email below to receive password reset instructions.",
                 textAlign: TextAlign.center,
-                style: mkFontRegular(16.0),
+                style: MkTheme.of(context).subhead2,
               ),
               SizedBox(height: 24.0),
               TextField(
                 decoration: InputDecoration(
                   hintText: "Email",
-                  prefixIcon: Icon(MkIcons.Mail),
+                  prefixIcon: Icon(MkIcons.Mail, size: 16.0),
                 ),
                 scrollPadding: EdgeInsets.only(bottom: 40.0),
               ),

@@ -1,12 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:lfw_mobile/constants/mk_icons.dart';
-import 'package:lfw_mobile/widgets/partials/mk_clear_button.dart';
-import 'package:lfw_mobile/widgets/partials/mk_primary_button.dart';
+import 'package:glam/constants/mk_icons.dart';
+import 'package:glam/widgets/partials/mk_clear_button.dart';
+import 'package:glam/widgets/partials/mk_primary_button.dart';
 
 class SignupForm extends StatelessWidget {
+  final void Function(int index) onSwitchIndex;
+
   const SignupForm({
     Key key,
+    this.onSwitchIndex,
   }) : super(key: key);
 
   @override
@@ -20,7 +23,7 @@ class SignupForm extends StatelessWidget {
               TextFormField(
                 decoration: InputDecoration(
                   hintText: "Username",
-                  prefixIcon: Icon(MkIcons.User),
+                  prefixIcon: Icon(MkIcons.User, size: 16.0),
                 ),
                 scrollPadding: EdgeInsets.only(bottom: 40.0),
               ),
@@ -28,7 +31,7 @@ class SignupForm extends StatelessWidget {
               TextFormField(
                 decoration: InputDecoration(
                   hintText: "Password",
-                  prefixIcon: Icon(MkIcons.Lock),
+                  prefixIcon: Icon(MkIcons.Lock, size: 16.0),
                 ),
                 scrollPadding: EdgeInsets.only(bottom: 40.0),
               ),
@@ -36,7 +39,7 @@ class SignupForm extends StatelessWidget {
               TextFormField(
                 decoration: InputDecoration(
                   hintText: "Email",
-                  prefixIcon: Icon(MkIcons.Mail),
+                  prefixIcon: Icon(MkIcons.Mail, size: 16.0),
                 ),
                 scrollPadding: EdgeInsets.only(bottom: 40.0),
               ),
@@ -54,7 +57,9 @@ class SignupForm extends StatelessWidget {
           alignment: Alignment.bottomCenter,
           child: MkClearButton(
             child: Text("Sign In"),
-            onPressed: () {},
+            onPressed: () {
+              onSwitchIndex(1);
+            },
           ),
         ),
       ],

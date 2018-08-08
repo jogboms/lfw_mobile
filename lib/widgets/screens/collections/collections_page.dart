@@ -2,13 +2,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
-import 'package:lfw_mobile/constants/mk_icons.dart';
-import 'package:lfw_mobile/constants/mk_images.dart';
-import 'package:lfw_mobile/utils/mk_navigate.dart';
-import 'package:lfw_mobile/utils/mk_theme.dart';
-import 'package:lfw_mobile/widgets/partials/mk_clear_button.dart';
-import 'package:lfw_mobile/widgets/partials/mk_primary_button.dart';
-import 'package:lfw_mobile/widgets/screens/events/events_page.dart';
+import 'package:glam/constants/mk_icons.dart';
+import 'package:glam/constants/mk_images.dart';
+import 'package:glam/constants/mk_style.dart';
+import 'package:glam/utils/mk_navigate.dart';
+import 'package:glam/utils/mk_theme.dart';
+import 'package:glam/widgets/partials/mk_clear_button.dart';
+import 'package:glam/widgets/partials/mk_primary_button.dart';
+import 'package:glam/widgets/screens/events/events_page.dart';
 
 class CollectionsPage extends StatefulWidget {
   @override
@@ -72,7 +73,7 @@ class _CollectionsPageState extends State<CollectionsPage> {
                         onPressed: () {},
                       ),
                       MkClearButton(
-                        child: Icon(MkIcons.Loupe),
+                        child: Icon(MkIcons.Loupe___Alt),
                         onPressed: () {},
                       ),
                     ],
@@ -100,7 +101,7 @@ class _CollectionsPageState extends State<CollectionsPage> {
             mainAxisAlignment: MainAxisAlignment.end,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Text(titles[index], style: mkFontRegular(12.0)),
+              Text(titles[index], style: mkFontSize(12.0)),
               SizedBox(height: 4.0),
               LayoutBuilder(
                 builder: (_, BoxConstraints constraints) {
@@ -108,13 +109,13 @@ class _CollectionsPageState extends State<CollectionsPage> {
                     width: constraints.maxWidth / 2,
                     child: Text(
                       headers[index],
-                      style: mkFontBold(24.0).copyWith(height: 1.05),
+                      style: MkTheme.of(context).display2Bold,
                     ),
                   );
                 },
               ),
               SizedBox(height: 16.0),
-              Text(counts[index], style: mkFontRegular(14.0, Colors.grey)),
+              Text(counts[index], style: mkFontColor(Colors.grey)),
               SizedBox(height: 16.0),
               MkPrimaryButton(
                 padding: EdgeInsets.symmetric(horizontal: 24.0),

@@ -4,94 +4,58 @@
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:lfw_mobile/constants/mk_colors.dart';
-import 'package:lfw_mobile/constants/mk_fonts.dart';
-import 'package:lfw_mobile/constants/mk_style.dart';
-
-class MkBorderSide extends BorderSide {
-  const MkBorderSide({
-    Color color,
-    BorderStyle style,
-  }) : super(
-          color: color ?? kBorderSideColor,
-          style: style ?? BorderStyle.solid,
-          width: 1.0,
-        );
-}
-
-class MkStyle extends TextStyle {
-  const MkStyle.mkFont(
-    double size,
-    FontWeight weight,
-    Color color,
-  ) : super(
-          inherit: false,
-          color: color,
-          fontFamily: MkFonts.base,
-          fontSize: size,
-          fontWeight: weight,
-          textBaseline: TextBaseline.alphabetic,
-        );
-
-  static FontWeight light = FontWeight.w200;
-  static FontWeight regular = FontWeight.w400;
-  static FontWeight medium = FontWeight.w600;
-  static FontWeight semibold = FontWeight.w700;
-  static FontWeight bold = FontWeight.w900;
-}
-
-TextStyle mkFont(double fontSize, Color color) =>
-    TextStyle(fontSize: fontSize, color: color);
-
-TextStyle mkFontSize(double fontSize) => TextStyle(fontSize: fontSize);
-
-TextStyle mkFontColor(Color color) => TextStyle(color: color);
-
-TextStyle mkFontLight(double fontSize, [Color color]) =>
-    new MkStyle.mkFont(fontSize, MkStyle.light, color ?? kTextBaseColor);
-TextStyle mkFontRegular(double fontSize, [Color color]) =>
-    new MkStyle.mkFont(fontSize, MkStyle.regular, color ?? kTextBaseColor);
-TextStyle mkFontMedium(double fontSize, [Color color]) =>
-    new MkStyle.mkFont(fontSize, MkStyle.medium, color ?? kTextBaseColor);
-TextStyle mkFontSemi(double fontSize, [Color color]) =>
-    new MkStyle.mkFont(fontSize, MkStyle.semibold, color ?? kTextBaseColor);
-TextStyle mkFontBold(double fontSize, [Color color]) =>
-    new MkStyle.mkFont(fontSize, MkStyle.bold, color ?? kTextBaseColor);
+import 'package:glam/constants/mk_colors.dart';
+import 'package:glam/constants/mk_style.dart';
 
 /// The TextStyles and Colors used for titles, labels, and descriptions. This
 /// InheritedWidget is shared by all of the routes and widgets created for
 /// the Mk app.
 class MkTheme extends InheritedWidget {
-  MkTheme({Key key, @required Widget child})
-      : assert(child != null),
+  const MkTheme({
+    Key key,
+    @required Widget child,
+  })  : assert(child != null),
         super(key: key, child: child);
 
-  Color get accentColor => MkColors.accent;
-  Color get primaryColor => MkColors.primary;
-  Color get borderSideColor => kBorderSideColor;
-  Color get appBarBackgroundColor => scaffoldColor;
+  TextStyle get small => _text12Style;
+  TextStyle get body1 => _text13Style;
+  TextStyle get body2 => body1.copyWith(height: 1.5);
+  TextStyle get body3 => _text14Style;
+  TextStyle get bodyMedium => body1.copyWith(fontWeight: MkStyle.medium);
+  TextStyle get bodyHint => body1.copyWith(color: Colors.grey);
+  TextStyle get button => _text14MediumStyle;
+  TextStyle get title => _header18Style;
+  TextStyle get subhead1 => _text15MediumStyle;
+  TextStyle get subhead2 => _text14Style;
+  TextStyle get headline => _header20Style;
 
-  final Color scaffoldColor = kBackgroundBaseColor;
-  final Color scaffoldColorAlt = kTextBaseColor.shade100;
-  final Color appBarColor = Colors.white;
-  final Color textColor = kTextBaseColor.shade600;
-  final Color textMutedColor = kTextBaseColor.shade500;
+  TextStyle get display1 => _text20Style;
+  TextStyle get display2 => _text24Style;
+  TextStyle get display2Bold => _header24BoldStyle;
+  TextStyle get display3 => _header28Style;
+  TextStyle get display4 => _header32Style;
 
-  // final Color scaffoldColor = Color(0xFF00251a);
-  // final Color scaffoldColorAlt = Colors.blueGrey.shade700;
-  // final Color appBarColor = Color(0xFF39796b);
-  // final Color textColor = Color(0xFF39796b);
+  TextStyle get textfield => body1.copyWith(
+        color: MkColors.light_grey.withOpacity(.8),
+      );
 
-  TextStyle get appBarStyle => mkFontRegular(22.0, appBarColor);
-  TextStyle get titleStyle => mkFontMedium(18.0, kTitleBaseColor);
-  TextStyle get smallTextStyle => mkFontRegular(12.0, textColor);
-  TextStyle get mediumTextStyle => mkFontRegular(13.0, textColor);
-  TextStyle get textFieldStyle => mkFontMedium(14.0, MkColors.light_grey);
-  TextStyle get textFieldLabelStyle => TextStyle(color: MkColors.light_grey);
-  TextStyle get text14Style => mkFontRegular(14.0, textColor);
-  TextStyle get text15Style => mkFontRegular(15.0, textColor);
-  TextStyle get text16Style => mkFontRegular(16.0, textColor);
-  TextStyle get text20Style => mkFontRegular(20.0, textColor);
+  TextStyle get _header18Style => mkFontMedium(18.0);
+  TextStyle get _header20Style => mkFontMedium(20.0);
+  TextStyle get _header24BoldStyle => mkFontBold(24.0).copyWith(height: 1.05);
+  TextStyle get _header28Style => mkFontMedium(28.0);
+  TextStyle get _header32Style => mkFontMedium(32.0);
+
+  TextStyle get _text12Style => mkFontRegular(12.0);
+  TextStyle get _text13Style => mkFontRegular(13.0);
+  TextStyle get _text14Style => mkFontRegular(14.0);
+  TextStyle get _text14MediumStyle => mkFontMedium(14.0);
+  // TextStyle get _text15Style => mkFontRegular(15.0);
+  TextStyle get _text15MediumStyle => mkFontMedium(15.0);
+  // TextStyle get _text16Style => mkFontRegular(16.0);
+  // TextStyle get _text16MediumStyle => mkFontMedium(16.0);
+  // TextStyle get _text18Style => mkFontRegular(18.0);
+  TextStyle get _text20Style => mkFontRegular(20.0);
+  TextStyle get _text24Style => mkFontRegular(24.0);
 
   static MkTheme of(BuildContext context) =>
       context.inheritFromWidgetOfExactType(MkTheme);

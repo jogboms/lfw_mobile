@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:lfw_mobile/constants/mk_colors.dart';
-import 'package:lfw_mobile/utils/mk_theme.dart';
+import 'package:glam/constants/mk_colors.dart';
+import 'package:glam/utils/mk_theme.dart';
 
 class MkPrimaryButton extends StatelessWidget {
   final Widget child;
@@ -20,7 +20,7 @@ class MkPrimaryButton extends StatelessWidget {
       color: MkColors.black,
       padding: padding,
       child: DefaultTextStyle(
-        style: mkFontMedium(16.0, MkColors.white),
+        style: MkTheme.of(context).button.copyWith(color: MkColors.white),
         child: child,
       ),
       onPressed: onPressed,
