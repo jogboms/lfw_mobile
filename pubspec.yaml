@@ -9,6 +9,7 @@ dependencies:
   flutter_swiper: ^1.0.4
   photo_view: ^0.0.2
   flutter_spinkit: ^2.0.0
+  url_launcher: ^3.0.2
 
 dev_dependencies:
   flutter_test:
@@ -18,13 +19,13 @@ flutter:
   uses-material-design: true
 
   assets:
-   - assets/images/
-   - assets/icons/
+    - assets/images/
+    - assets/icons/
 
   fonts:
-    - family:  MkIcons
+    - family: MkIcons
       fonts:
-       - asset: assets/fonts/MkIcons.ttf
+        - asset: assets/fonts/MkIcons.ttf
 
     - family: Source Code Pro
       fonts:

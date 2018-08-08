@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:glam/constants/mk_colors.dart';
 import 'package:glam/constants/mk_images.dart';
-import 'package:glam/constants/mk_style.dart';
 import 'package:glam/utils/mk_theme.dart';
 import 'package:glam/widgets/partials/mk_back_button.dart';
+import 'package:glam/widgets/partials/mk_products_grid.dart';
 import 'package:glam/widgets/views/image_view.dart';
-
-const kScrollBarHeight = 228.0;
 
 class EventPage extends StatefulWidget {
   final String tag;
@@ -32,8 +30,12 @@ class EventPageState extends State<EventPage> {
       body: CustomScrollView(
         slivers: <Widget>[
           _buildAppBar(),
-          SliverToBoxAdapter(child: _buildBody()),
-          SliverToBoxAdapter(child: _buildFooter()),
+          SliverList(
+            delegate: SliverChildListDelegate([
+              _buildBody(),
+              _buildFooter(),
+            ]),
+          ),
         ],
       ),
     );
@@ -55,57 +57,7 @@ class EventPageState extends State<EventPage> {
               style: MkTheme.of(context).subhead1.copyWith(color: Colors.white),
             ),
             SizedBox(height: 24.0),
-            SizedBox(
-              height: kScrollBarHeight,
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: 5,
-                itemBuilder: (BuildContext context, int index) {
-                  const _height = (kScrollBarHeight / 1.2) - 2.0;
-                  const _width = _height / 1.3125;
-                  return SizedBox(
-                    width: _width,
-                    child: Padding(
-                      padding: const EdgeInsets.only(right: 16.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          SizedBox(
-                            height: _height,
-                            child: Material(
-                              borderRadius: BorderRadius.circular(5.0),
-                              child: Image(
-                                image: widget.image,
-                                alignment: Alignment.topCenter,
-                                fit: BoxFit.cover,
-                                // fit: BoxFit.fitWidth,
-                              ),
-                            ),
-                          ),
-                          SizedBox(height: 4.0),
-                          Text(
-                            "Length Tent Dresstr ereyr",
-                            style: bodyStyle.copyWith(
-                              fontWeight: MkStyle.medium,
-                            ),
-                            overflow: TextOverflow.ellipsis,
-                            maxLines: 1,
-                          ),
-                          SizedBox(height: 4.0),
-                          Text(
-                            "N160",
-                            style: bodyStyle.copyWith(
-                              fontWeight: MkStyle.semibold,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  );
-                },
-              ),
-            ),
+            MkProductsGrid(brightness: Brightness.dark),
             SizedBox(height: 32.0),
             Text(
               "Designers",
@@ -252,35 +204,36 @@ class EventPageState extends State<EventPage> {
         //   widget.title,
         //   style: MkTheme.of(context).body1.copyWith(color: Colors.white),
         // ),
-        background: Hero(
-          tag: widget.tag,
-          child: Stack(
-            fit: StackFit.expand,
-            children: <Widget>[
-              Image(
-                image: widget.image,
-                alignment: Alignment.topCenter,
-                fit: BoxFit.cover,
-              ),
-              DecoratedBox(
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [
-                      Colors.black.withOpacity(.15),
-                      Colors.black.withOpacity(.5),
-                      Colors.black.withOpacity(.95),
-                      Colors.black
-                    ],
-                    begin: Alignment.topCenter,
-                    // end: Alignment.bottomCenter,
-                    end: Alignment(.0, 4.0),
-                  ),
-                ),
-              ),
-            ],
+        background: _buildTopBackground(),
+      ),
+    );
+  }
+
+  Widget _buildTopBackground() {
+    return Stack(
+      fit: StackFit.expand,
+      children: <Widget>[
+        Image(
+          image: widget.image,
+          alignment: Alignment.topCenter,
+          fit: BoxFit.cover,
+        ),
+        DecoratedBox(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                Colors.black.withOpacity(.15),
+                Colors.black.withOpacity(.5),
+                Colors.black.withOpacity(.95),
+                Colors.black
+              ],
+              begin: Alignment.topCenter,
+              // end: Alignment.bottomCenter,
+              end: Alignment(.0, 4.0),
+            ),
           ),
         ),
-      ),
+      ],
     );
   }
 }

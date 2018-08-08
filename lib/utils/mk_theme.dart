@@ -26,6 +26,8 @@ class MkTheme extends InheritedWidget {
   TextStyle get button => _text14MediumStyle;
   TextStyle get title => _header18Style;
   TextStyle get subhead1 => _text15MediumStyle;
+  TextStyle get subhead1Bold => _text15BoldStyle;
+  TextStyle get subhead1Light => _text15LightStyle;
   TextStyle get subhead2 => _text14Style;
   TextStyle get headline => _header20Style;
 
@@ -50,6 +52,8 @@ class MkTheme extends InheritedWidget {
   TextStyle get _text14Style => mkFontRegular(14.0);
   TextStyle get _text14MediumStyle => mkFontMedium(14.0);
   // TextStyle get _text15Style => mkFontRegular(15.0);
+  TextStyle get _text15BoldStyle => mkFontSemi(15.0);
+  TextStyle get _text15LightStyle => mkFontLight(15.0);
   TextStyle get _text15MediumStyle => mkFontMedium(15.0);
   // TextStyle get _text16Style => mkFontRegular(16.0);
   // TextStyle get _text16MediumStyle => mkFontMedium(16.0);

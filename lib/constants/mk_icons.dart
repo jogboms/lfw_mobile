@@ -480,4 +480,5 @@ class MkIcons {
   static const IconData Zoom_In = const IconData(0xeac9, fontFamily: _kFontFam);
   static const IconData Zoom_Out___Alt = const IconData(0xeaca, fontFamily: _kFontFam);
   static const IconData Zoom_Out = const IconData(0xeacb, fontFamily: _kFontFam);
+  static const IconData Heart___Filled = const IconData(0xeacc, fontFamily: _kFontFam);
 }
