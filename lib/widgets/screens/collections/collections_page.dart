@@ -2,13 +2,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
-import 'package:glam/constants/mk_icons.dart';
 import 'package:glam/constants/mk_images.dart';
 import 'package:glam/constants/mk_style.dart';
 import 'package:glam/utils/mk_navigate.dart';
 import 'package:glam/utils/mk_theme.dart';
-import 'package:glam/widgets/partials/mk_clear_button.dart';
+import 'package:glam/widgets/partials/mk_burger_button.dart';
 import 'package:glam/widgets/partials/mk_primary_button.dart';
+import 'package:glam/widgets/partials/mk_search_button.dart';
 import 'package:glam/widgets/screens/events/events_page.dart';
 
 class CollectionsPage extends StatefulWidget {
@@ -68,12 +68,10 @@ class _CollectionsPageState extends State<CollectionsPage> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
-                      MkClearButton(
-                        child: Icon(MkIcons.List___Alt),
+                      MkBurgerButton(
                         onPressed: () {},
                       ),
-                      MkClearButton(
-                        child: Icon(MkIcons.Loupe___Alt),
+                      MkSearchButton(
                         onPressed: () {},
                       ),
                     ],

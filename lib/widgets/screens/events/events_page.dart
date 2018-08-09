@@ -6,8 +6,10 @@ import 'package:glam/constants/mk_icons.dart';
 import 'package:glam/constants/mk_images.dart';
 import 'package:glam/utils/mk_navigate.dart';
 import 'package:glam/utils/mk_theme.dart';
+import 'package:glam/widgets/partials/mk_burger_button.dart';
 import 'package:glam/widgets/partials/mk_clear_button.dart';
 import 'package:glam/widgets/partials/mk_primary_button.dart';
+import 'package:glam/widgets/partials/mk_search_button.dart';
 import 'package:glam/widgets/screens/events/event_page.dart';
 import 'package:glam/widgets/screens/events/ui/swiper_mode.dart';
 
@@ -49,13 +51,13 @@ class _EventsPageState extends State<EventsPage> {
       backgroundColor: MkColors.black.shade900,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
-        leading: MkClearButton(
-          child: Icon(MkIcons.List___Alt, color: Colors.white),
+        leading: MkBurgerButton(
+          color: Colors.white,
           onPressed: () {},
         ),
         actions: <Widget>[
-          MkClearButton(
-            child: Icon(MkIcons.Loupe___Alt, color: Colors.white),
+          MkSearchButton(
+            color: Colors.white,
             onPressed: () {},
           ),
         ],
@@ -79,7 +81,6 @@ class _EventsPageState extends State<EventsPage> {
               child: LayoutBuilder(
                 builder: (_, BoxConstraints constraints) {
                   return Padding(
-                    // padding: const EdgeInsets.only(right: 16.0),
                     padding: const EdgeInsets.symmetric(horizontal: 16.0),
                     child: SwiperMode(
                       width: constraints.maxWidth,
@@ -100,36 +101,40 @@ class _EventsPageState extends State<EventsPage> {
               ),
             ),
             SizedBox(height: 16.0),
-            Padding(
-              padding: const EdgeInsets.only(left: 16.0),
-              child: Row(
-                children: <Widget>[
-                  MkPrimaryButton(
-                    padding: EdgeInsets.symmetric(horizontal: 24.0),
-                    child: Text("Explore"),
-                    onPressed: () {
-                      _onTapItem(activeIndex);
-                    },
-                  ),
-                  Expanded(child: SizedBox()),
-                  MkClearButton(
-                    child: Icon(MkIcons.Chevon___Left, color: Colors.white),
-                    onPressed: () {
-                      _controller.previous();
-                    },
-                  ),
-                  MkClearButton(
-                    child: Icon(MkIcons.Chevron___Right, color: Colors.white),
-                    onPressed: () {
-                      _controller.next();
-                    },
-                  ),
-                ],
-              ),
-            ),
+            _buildBottomBar(),
             SizedBox(height: 16.0),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget _buildBottomBar() {
+    return Padding(
+      padding: const EdgeInsets.only(left: 16.0),
+      child: Row(
+        children: <Widget>[
+          MkPrimaryButton(
+            padding: EdgeInsets.symmetric(horizontal: 24.0),
+            child: Text("Explore"),
+            onPressed: () {
+              _onTapItem(activeIndex);
+            },
+          ),
+          Expanded(child: SizedBox()),
+          MkClearButton(
+            child: Icon(MkIcons.Chevon___Left, color: Colors.white),
+            onPressed: () {
+              _controller.previous();
+            },
+          ),
+          MkClearButton(
+            child: Icon(MkIcons.Chevron___Right, color: Colors.white),
+            onPressed: () {
+              _controller.next();
+            },
+          ),
+        ],
       ),
     );
   }
@@ -138,7 +143,7 @@ class _EventsPageState extends State<EventsPage> {
     MkNavigate(
       context,
       EventPage(
-        tag: "tagger-$activeIndex",
+        tag: "tagger-$index",
         image: images[index],
         title: headers[index],
       ),

@@ -20,6 +20,7 @@ class App extends StatelessWidget {
     final theme = Theme.of(context);
     return new MaterialApp(
       title: MkStrings.appName,
+      color: kPrimarySwatch.shade900,
       theme: new ThemeData(
         accentColor: kAccentColor,
         primarySwatch: kPrimarySwatch,

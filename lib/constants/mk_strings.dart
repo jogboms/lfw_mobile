@@ -1,5 +1,5 @@
 class MkStrings {
   MkStrings._();
 
-  static const String appName = "LFW";
+  static const String appName = "GLAM";
 }
