@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:glam/constants/mk_icons.dart';
+import 'package:glam/constants/mk_routes.dart';
 import 'package:glam/utils/mk_navigate.dart';
 import 'package:glam/widgets/partials/mk_clear_button.dart';
 import 'package:glam/widgets/partials/mk_outline_button.dart';
@@ -43,7 +44,11 @@ class LoginForm extends StatelessWidget {
         new MkPrimaryButton(
           child: Text("Sign In"),
           onPressed: () {
-            MkNavigate(context, EventsPage());
+            MkNavigate(
+              context,
+              EventsPage(),
+              name: MkRoutes.events,
+            );
           },
         ),
         SizedBox(height: 16.0),

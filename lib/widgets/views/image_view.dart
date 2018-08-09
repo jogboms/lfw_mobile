@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
-import 'package:glam/constants/mk_colors.dart';
 import 'package:glam/widgets/partials/mk_close_button.dart';
 import 'package:glam/widgets/partials/mk_loading_spinner.dart';
 import 'package:photo_view/photo_view.dart';
@@ -60,7 +59,7 @@ class ImageView extends StatelessWidget {
                 config.itemCount,
             height: 2.0,
             child: Container(
-              color: active ? Colors.white : MkColors.black,
+              color: active ? Colors.white : Colors.transparent,
             ),
           ));
         }

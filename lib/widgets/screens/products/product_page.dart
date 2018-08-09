@@ -5,11 +5,13 @@ import 'package:glam/constants/mk_icons.dart';
 import 'package:glam/constants/mk_images.dart';
 import 'package:glam/constants/mk_style.dart';
 import 'package:glam/utils/mk_launch.dart';
+import 'package:glam/utils/mk_navigate.dart';
 import 'package:glam/utils/mk_theme.dart';
 import 'package:glam/widgets/partials/mk_back_button.dart';
 import 'package:glam/widgets/partials/mk_clear_button.dart';
 import 'package:glam/widgets/partials/mk_primary_button.dart';
 import 'package:glam/widgets/partials/mk_products_grid.dart';
+import 'package:glam/widgets/screens/designers/designer_page.dart';
 import 'package:glam/widgets/views/image_view.dart';
 
 class ProductPage extends StatefulWidget {
@@ -162,9 +164,15 @@ class _ProductPageState extends State<ProductPage> {
                 "Mini Cami Skater Dress",
                 style: MkTheme.of(context).subhead1,
               ),
-              Text(
-                "Lanre DaSilva",
-                style: MkTheme.of(context).subhead1Light,
+              SizedBox(height: 2.0),
+              GestureDetector(
+                child: Text(
+                  "Lanre DaSilva",
+                  style: MkTheme.of(context).subhead1Light,
+                ),
+                onTap: () {
+                  MkNavigate(context, DesignerPage());
+                },
               ),
             ],
           ),
@@ -180,9 +188,9 @@ class _ProductPageState extends State<ProductPage> {
   Widget _buildAppBar() {
     return SliverAppBar(
       backgroundColor: MkColors.black.shade900,
-      brightness: Brightness.light,
-      leading: MkBackButton(),
-      // pinned: true,
+      brightness: Brightness.dark,
+      leading: MkBackButton(color: Colors.white),
+      pinned: true,
       expandedHeight: MediaQuery.of(context).size.height / 2.0,
       flexibleSpace: FlexibleSpaceBar(
         background: _buildAppBarBackground(),

@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:glam/constants/mk_colors.dart';
 import 'package:glam/constants/mk_images.dart';
+import 'package:glam/constants/mk_routes.dart';
+import 'package:glam/constants/mk_style.dart';
 import 'package:glam/utils/mk_theme.dart';
 import 'package:glam/widgets/partials/mk_back_button.dart';
+import 'package:glam/widgets/partials/mk_clear_button.dart';
 import 'package:glam/widgets/partials/mk_products_grid.dart';
 import 'package:glam/widgets/views/image_view.dart';
 
@@ -89,7 +92,21 @@ class EventPageState extends State<EventPage> {
               "Zara Nicols",
               style: bodyStyle,
             ),
-            SizedBox(height: 32.0),
+            SizedBox(height: 48.0),
+            Center(
+              child: MkClearButton(
+                child: Text(
+                  "Back Home",
+                  style: mkFontColor(Colors.white),
+                ),
+                onPressed: () {
+                  Navigator.of(context).popUntil(
+                    ModalRoute.withName(MkRoutes.events),
+                  );
+                },
+              ),
+            ),
+            SizedBox(height: 8.0),
           ],
         ),
       ),
