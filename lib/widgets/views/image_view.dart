@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:glam/constants/mk_colors.dart';
 import 'package:glam/widgets/partials/mk_close_button.dart';
 import 'package:glam/widgets/partials/mk_loading_spinner.dart';
 import 'package:photo_view/photo_view.dart';
 
 class ImageView extends StatelessWidget {
-  final ImageProvider image;
+  final List<ImageProvider> images;
+  final int index;
 
   const ImageView({
     Key key,
-    @required this.image,
+    @required this.images,
+    @required this.index,
   }) : super(key: key);
 
   @override
@@ -19,9 +23,12 @@ class ImageView extends StatelessWidget {
       body: Stack(
         fit: StackFit.expand,
         children: <Widget>[
-          new PhotoView(
-            imageProvider: image,
-            loadingChild: mkLoadingSpinner(),
+          new Swiper(
+            loop: false,
+            itemBuilder: _slideBuilder,
+            itemCount: images.length,
+            index: index,
+            pagination: _buildPagination(),
           ),
           Positioned.fill(
             top: 0.0,
@@ -40,15 +47,54 @@ class ImageView extends StatelessWidget {
       ),
     );
   }
+
+  SwiperCustomPagination _buildPagination() {
+    return new SwiperCustomPagination(
+      builder: (BuildContext context, SwiperPluginConfig config) {
+        final List<Widget> list = [];
+        const padding = 4.0;
+        for (int i = 0; i < config.itemCount; ++i) {
+          final bool active = i == config.activeIndex;
+          list.add(SizedBox(
+            width: (MediaQuery.of(context).size.width - (padding * 2)) /
+                config.itemCount,
+            height: 2.0,
+            child: Container(
+              color: active ? Colors.white : MkColors.black,
+            ),
+          ));
+        }
+        return Padding(
+          padding: const EdgeInsets.symmetric(horizontal: padding),
+          child: Align(
+            alignment: Alignment(1.0, 0.95),
+            child: new Row(
+              key: key,
+              children: list,
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  Widget _slideBuilder(BuildContext context, int index) {
+    return new PhotoView(
+      imageProvider: images[index],
+      loadingChild: mkLoadingSpinner(),
+    );
+  }
 }
 
 PageRouteBuilder<dynamic> fadeInRoute({
-  @required ImageProvider image,
+  @required List<ImageProvider> images,
+  @required int index,
 }) {
   return new PageRouteBuilder<dynamic>(
     opaque: false,
     pageBuilder: (BuildContext context, _, __) => ImageView(
-          image: image,
+          images: images,
+          index: index,
         ),
     transitionsBuilder: (
       _,

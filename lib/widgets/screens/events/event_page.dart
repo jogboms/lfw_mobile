@@ -145,7 +145,14 @@ class EventPageState extends State<EventPage> {
                           onTap: () {
                             Navigator.of(context).push<dynamic>(
                               fadeInRoute(
-                                image: MkImages.o4,
+                                images: [
+                                  MkImages.o4,
+                                  MkImages.o4,
+                                  MkImages.o4,
+                                  MkImages.o4,
+                                  MkImages.o4,
+                                ],
+                                index: index,
                               ),
                             );
                           },

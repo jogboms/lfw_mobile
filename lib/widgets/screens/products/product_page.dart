@@ -202,7 +202,12 @@ class _ProductPageState extends State<ProductPage> {
       onTap: (index) {
         Navigator.of(context).push<dynamic>(
           fadeInRoute(
-            image: MkImages.o4,
+            images: [
+              MkImages.o6,
+              MkImages.o6,
+              MkImages.o6,
+            ],
+            index: index,
           ),
         );
       },
