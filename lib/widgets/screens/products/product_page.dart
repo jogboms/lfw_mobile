@@ -11,6 +11,7 @@ import 'package:glam/widgets/partials/mk_back_button.dart';
 import 'package:glam/widgets/partials/mk_clear_button.dart';
 import 'package:glam/widgets/partials/mk_primary_button.dart';
 import 'package:glam/widgets/partials/mk_products_grid.dart';
+import 'package:glam/widgets/partials/mk_touchable_opacity.dart';
 import 'package:glam/widgets/screens/designers/designer_page.dart';
 import 'package:glam/widgets/views/image_view.dart';
 
@@ -165,12 +166,12 @@ class _ProductPageState extends State<ProductPage> {
                 style: MkTheme.of(context).subhead1,
               ),
               SizedBox(height: 2.0),
-              GestureDetector(
+              MkTouchableOpacity(
                 child: Text(
                   "Lanre DaSilva",
                   style: MkTheme.of(context).subhead1Light,
                 ),
-                onTap: () {
+                onPressed: () {
                   MkNavigate(context, DesignerPage());
                 },
               ),

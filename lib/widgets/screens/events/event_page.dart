@@ -3,10 +3,13 @@ import 'package:glam/constants/mk_colors.dart';
 import 'package:glam/constants/mk_images.dart';
 import 'package:glam/constants/mk_routes.dart';
 import 'package:glam/constants/mk_style.dart';
+import 'package:glam/utils/mk_navigate.dart';
 import 'package:glam/utils/mk_theme.dart';
 import 'package:glam/widgets/partials/mk_back_button.dart';
 import 'package:glam/widgets/partials/mk_clear_button.dart';
 import 'package:glam/widgets/partials/mk_products_grid.dart';
+import 'package:glam/widgets/partials/mk_touchable_opacity.dart';
+import 'package:glam/widgets/screens/designers/designer_page.dart';
 import 'package:glam/widgets/views/image_view.dart';
 
 class EventPage extends StatefulWidget {
@@ -67,31 +70,13 @@ class EventPageState extends State<EventPage> {
               style: MkTheme.of(context).subhead1.copyWith(color: Colors.white),
             ),
             SizedBox(height: 24.0),
-            Text(
-              "Zara Nicols",
-              style: bodyStyle,
-            ),
-            SizedBox(height: 8.0),
-            Divider(color: Colors.white.withOpacity(.35)),
-            SizedBox(height: 8.0),
-            Text(
-              "Mai Atafo",
-              style: bodyStyle,
-            ),
-            SizedBox(height: 8.0),
-            Divider(color: Colors.white.withOpacity(.35)),
-            SizedBox(height: 8.0),
-            Text(
-              "Zara Nicols",
-              style: bodyStyle,
-            ),
-            SizedBox(height: 8.0),
-            Divider(color: Colors.white.withOpacity(.35)),
-            SizedBox(height: 8.0),
-            Text(
-              "Zara Nicols",
-              style: bodyStyle,
-            ),
+            _buidDesignerListItem(text: "Zara Nicols", style: bodyStyle),
+            Divider(height: 32.0, color: Colors.white.withOpacity(.35)),
+            _buidDesignerListItem(text: "Jumai Willis", style: bodyStyle),
+            Divider(height: 32.0, color: Colors.white.withOpacity(.35)),
+            _buidDesignerListItem(text: "Mai Atafo", style: bodyStyle),
+            Divider(height: 32.0, color: Colors.white.withOpacity(.35)),
+            _buidDesignerListItem(text: "Mr Jon", style: bodyStyle),
             SizedBox(height: 48.0),
             Center(
               child: MkClearButton(
@@ -110,6 +95,21 @@ class EventPageState extends State<EventPage> {
           ],
         ),
       ),
+    );
+  }
+
+  Widget _buidDesignerListItem({
+    String text,
+    TextStyle style,
+  }) {
+    return MkTouchableOpacity(
+      child: Text(
+        text,
+        style: style,
+      ),
+      onPressed: () {
+        MkNavigate(context, DesignerPage());
+      },
     );
   }
 
