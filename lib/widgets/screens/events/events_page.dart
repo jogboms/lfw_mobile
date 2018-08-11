@@ -4,10 +4,13 @@ import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:glam/constants/mk_colors.dart';
 import 'package:glam/constants/mk_icons.dart';
 import 'package:glam/constants/mk_images.dart';
+import 'package:glam/utils/mk_drawer.dart';
+import 'package:glam/utils/mk_fade_in_route.dart';
 import 'package:glam/utils/mk_navigate.dart';
 import 'package:glam/utils/mk_theme.dart';
 import 'package:glam/widgets/partials/mk_burger_button.dart';
 import 'package:glam/widgets/partials/mk_clear_button.dart';
+import 'package:glam/widgets/partials/mk_drawer.dart';
 import 'package:glam/widgets/partials/mk_primary_button.dart';
 import 'package:glam/widgets/partials/mk_search_button.dart';
 import 'package:glam/widgets/screens/events/event_page.dart';
@@ -18,7 +21,10 @@ class EventsPage extends StatefulWidget {
   _EventsPageState createState() => new _EventsPageState();
 }
 
-class _EventsPageState extends State<EventsPage> {
+class _EventsPageState extends State<EventsPage> with MkDrawerProvider {
+  @override
+  final scaffoldKey = GlobalKey<ScaffoldState>();
+
   final _controller = new SwiperController();
   int activeIndex = 0;
   final List<ImageProvider> images = [
@@ -48,12 +54,23 @@ class _EventsPageState extends State<EventsPage> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
+      key: scaffoldKey,
       backgroundColor: MkColors.black.shade900,
+      // drawer: const MkDrawer(),
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         leading: MkBurgerButton(
           color: Colors.white,
-          onPressed: () {},
+          onPressed: () {
+            // showDrawer();
+            Navigator.of(context).push<dynamic>(
+              mkFadeInRoute(
+                builder: (BuildContext context) => MkDrawer(
+                      brightness: Brightness.dark,
+                    ),
+              ),
+            );
+          },
         ),
         actions: <Widget>[
           MkSearchButton(

@@ -4,9 +4,11 @@ import 'package:flutter/services.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:glam/constants/mk_images.dart';
 import 'package:glam/constants/mk_style.dart';
+import 'package:glam/utils/mk_fade_in_route.dart';
 import 'package:glam/utils/mk_navigate.dart';
 import 'package:glam/utils/mk_theme.dart';
 import 'package:glam/widgets/partials/mk_burger_button.dart';
+import 'package:glam/widgets/partials/mk_drawer.dart';
 import 'package:glam/widgets/partials/mk_primary_button.dart';
 import 'package:glam/widgets/partials/mk_search_button.dart';
 import 'package:glam/widgets/screens/events/events_page.dart';
@@ -69,7 +71,15 @@ class _CollectionsPageState extends State<CollectionsPage> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       MkBurgerButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.of(context).push<dynamic>(
+                            mkFadeInRoute(
+                              builder: (BuildContext context) => MkDrawer(
+                                    brightness: Brightness.dark,
+                                  ),
+                            ),
+                          );
+                        },
                       ),
                       MkSearchButton(
                         onPressed: () {},

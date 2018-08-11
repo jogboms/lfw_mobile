@@ -81,7 +81,10 @@ class _LoginPageState extends State<LoginPage> {
           child: child,
         ),
       ),
-      onPressed: onPressed,
+      onPressed: () {
+        FocusScope.of(context).requestFocus(FocusNode());
+        onPressed();
+      },
     );
   }
 

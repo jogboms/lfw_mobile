@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:glam/utils/mk_fade_in_route.dart';
 import 'package:glam/widgets/partials/mk_close_button.dart';
 import 'package:glam/widgets/partials/mk_loading_spinner.dart';
 import 'package:photo_view/photo_view.dart';
@@ -32,6 +33,7 @@ class ImageView extends StatelessWidget {
           Positioned.fill(
             top: 0.0,
             bottom: null,
+            // TODO iPhone X
             child: AppBar(
               brightness: Brightness.dark,
               backgroundColor: Colors.black26,
@@ -89,21 +91,10 @@ PageRouteBuilder<dynamic> fadeInRoute({
   @required List<ImageProvider> images,
   @required int index,
 }) {
-  return new PageRouteBuilder<dynamic>(
-    opaque: false,
-    pageBuilder: (BuildContext context, _, __) => ImageView(
+  return mkFadeInRoute(
+    builder: (context) => ImageView(
           images: images,
           index: index,
-        ),
-    transitionsBuilder: (
-      _,
-      Animation<double> animation,
-      __,
-      Widget child,
-    ) =>
-        new FadeTransition(
-          opacity: animation,
-          child: child,
         ),
   );
 }

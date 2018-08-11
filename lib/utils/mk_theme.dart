@@ -29,13 +29,15 @@ class MkTheme extends InheritedWidget {
   TextStyle get subhead1Bold => _text15BoldStyle;
   TextStyle get subhead1Light => _text15LightStyle;
   TextStyle get subhead2 => _text14Style;
+  TextStyle get subhead3 => _text16Style;
   TextStyle get headline => _header20Style;
 
   TextStyle get display1 => _text20Style;
   TextStyle get display2 => _text24Style;
   TextStyle get display2Bold => _header24BoldStyle;
   TextStyle get display3 => _header28Style;
-  TextStyle get display4 => _header32Style;
+  TextStyle get display4 => _text32Style;
+  TextStyle get display4Bold => _header32Style;
 
   TextStyle get textfield => body1.copyWith(
         color: MkColors.light_grey.withOpacity(.8),
@@ -55,11 +57,12 @@ class MkTheme extends InheritedWidget {
   TextStyle get _text15BoldStyle => mkFontSemi(15.0);
   TextStyle get _text15LightStyle => mkFontLight(15.0);
   TextStyle get _text15MediumStyle => mkFontMedium(15.0);
-  // TextStyle get _text16Style => mkFontRegular(16.0);
+  TextStyle get _text16Style => mkFontRegular(16.0);
   // TextStyle get _text16MediumStyle => mkFontMedium(16.0);
   // TextStyle get _text18Style => mkFontRegular(18.0);
   TextStyle get _text20Style => mkFontRegular(20.0);
   TextStyle get _text24Style => mkFontRegular(24.0);
+  TextStyle get _text32Style => mkFontRegular(32.0);
 
   static MkTheme of(BuildContext context) =>
       context.inheritFromWidgetOfExactType(MkTheme);
