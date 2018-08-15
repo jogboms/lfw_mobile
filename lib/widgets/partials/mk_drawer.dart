@@ -4,8 +4,10 @@ import 'package:glam/constants/mk_colors.dart';
 import 'package:glam/utils/mk_navigate.dart';
 import 'package:glam/utils/mk_theme.dart';
 import 'package:glam/widgets/partials/mk_close_button.dart';
+import 'package:glam/widgets/partials/mk_touchable_opacity.dart';
 import 'package:glam/widgets/screens/events/events_page.dart';
 import 'package:glam/widgets/screens/lookbooks/lookbooks_page.dart';
+import 'package:glam/widgets/screens/stories/stories_page.dart';
 
 enum MkPages {
   Events,
@@ -63,34 +65,36 @@ class MkDrawer extends StatelessWidget {
     );
   }
 
-  ListTile _buildListTile({
+  Widget _buildListTile({
     BuildContext context,
     String text,
     TextStyle style,
     MkPages page,
     Widget widget,
   }) {
-    return ListTile(
-      contentPadding: EdgeInsets.only(left: _kPadLeft),
-      dense: true,
-      title: Text(
-        text,
-        style: style,
+    return Padding(
+      padding: const EdgeInsets.only(left: _kPadLeft),
+      child: MkTouchableOpacity(
+        child: Text(
+          text,
+          style: style,
+        ),
+        onPressed: () {
+          if (page == currentPage) {
+            Navigator.of(context).pop();
+            return;
+          }
+          Navigator.of(context).push<dynamic>(
+            MkNavigate.slideIn<dynamic>(widget),
+          );
+        },
       ),
-      onTap: () {
-        if (page == currentPage) {
-          Navigator.of(context).pop();
-          return;
-        }
-        Navigator.of(context).push<dynamic>(
-          MkNavigate.slideIn<dynamic>(widget),
-        );
-      },
     );
   }
 
   Widget _buildItemLists(BuildContext context, TextStyle style) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         _buildListTile(
           context: context,
@@ -119,7 +123,7 @@ class MkDrawer extends StatelessWidget {
         _buildListTile(
           context: context,
           text: "Stories",
-          widget: new LookbooksPage(),
+          widget: new StoriesPage(),
           page: MkPages.Stories,
           style: style,
         ),
