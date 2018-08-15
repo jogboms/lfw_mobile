@@ -1,16 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:glam/constants/mk_colors.dart';
+import 'package:glam/utils/mk_navigate.dart';
 import 'package:glam/utils/mk_theme.dart';
 import 'package:glam/widgets/partials/mk_close_button.dart';
+import 'package:glam/widgets/screens/events/events_page.dart';
+import 'package:glam/widgets/screens/lookbooks/lookbooks_page.dart';
+
+enum MkPages {
+  Events,
+  Designers,
+  Lookbooks,
+  Stories,
+  Contact,
+}
 
 const double _kPadLeft = 48.0;
 
 class MkDrawer extends StatelessWidget {
   final Brightness brightness;
+  final MkPages currentPage;
 
   const MkDrawer({
     Key key,
+    @required this.currentPage,
     this.brightness = Brightness.light,
   }) : super(key: key);
 
@@ -34,7 +47,7 @@ class MkDrawer extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 MkCloseButton(color: _color),
-                _buildItemLists(_listStyle),
+                _buildItemLists(context, _listStyle),
                 Padding(
                   padding: const EdgeInsets.only(left: _kPadLeft, bottom: 16.0),
                   child: Text(
@@ -51,9 +64,11 @@ class MkDrawer extends StatelessWidget {
   }
 
   ListTile _buildListTile({
+    BuildContext context,
     String text,
     TextStyle style,
-    VoidCallback onTap,
+    MkPages page,
+    Widget widget,
   }) {
     return ListTile(
       contentPadding: EdgeInsets.only(left: _kPadLeft),
@@ -62,40 +77,58 @@ class MkDrawer extends StatelessWidget {
         text,
         style: style,
       ),
-      onTap: onTap,
+      onTap: () {
+        if (page == currentPage) {
+          Navigator.of(context).pop();
+          return;
+        }
+        Navigator.of(context).push<dynamic>(
+          MkNavigate.slideIn<dynamic>(widget),
+        );
+      },
     );
   }
 
-  Widget _buildItemLists(TextStyle style) {
+  Widget _buildItemLists(BuildContext context, TextStyle style) {
     return Column(
       children: <Widget>[
         _buildListTile(
+          context: context,
           text: "Events",
-          onTap: () {},
+          widget: new EventsPage(),
+          page: MkPages.Events,
           style: style,
         ),
         SizedBox(height: 32.0),
         _buildListTile(
+          context: context,
           text: "Designers",
-          onTap: () {},
+          widget: new LookbooksPage(),
+          page: MkPages.Designers,
           style: style,
         ),
         SizedBox(height: 32.0),
         _buildListTile(
+          context: context,
           text: "Lookbooks",
-          onTap: () {},
+          widget: new LookbooksPage(),
+          page: MkPages.Lookbooks,
           style: style,
         ),
         SizedBox(height: 32.0),
         _buildListTile(
+          context: context,
           text: "Stories",
-          onTap: () {},
+          widget: new LookbooksPage(),
+          page: MkPages.Stories,
           style: style,
         ),
         SizedBox(height: 32.0),
         _buildListTile(
+          context: context,
           text: "Contact",
-          onTap: () {},
+          widget: new LookbooksPage(),
+          page: MkPages.Contact,
           style: style,
         ),
       ],
