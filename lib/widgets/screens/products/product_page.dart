@@ -10,10 +10,10 @@ import 'package:glam/utils/mk_theme.dart';
 import 'package:glam/widgets/partials/mk_back_button.dart';
 import 'package:glam/widgets/partials/mk_clear_button.dart';
 import 'package:glam/widgets/partials/mk_primary_button.dart';
-import 'package:glam/widgets/partials/mk_products_grid.dart';
 import 'package:glam/widgets/partials/mk_touchable_opacity.dart';
 import 'package:glam/widgets/screens/designers/designer_page.dart';
 import 'package:glam/widgets/views/image_view.dart';
+import 'package:glam/widgets/views/products_grid.dart';
 
 class ProductPage extends StatefulWidget {
   @override
@@ -144,7 +144,7 @@ class _ProductPageState extends State<ProductPage> {
             style: MkTheme.of(context).subhead1,
           ),
           SizedBox(height: 16.0),
-          MkProductsGrid(),
+          ProductsGrid(),
           SizedBox(height: 16.0),
         ],
       ),

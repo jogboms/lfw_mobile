@@ -7,7 +7,7 @@ import 'package:glam/constants/mk_style.dart';
 import 'package:glam/utils/mk_theme.dart';
 import 'package:glam/widgets/partials/mk_back_button.dart';
 import 'package:glam/widgets/partials/mk_clear_button.dart';
-import 'package:glam/widgets/partials/mk_products_grid.dart';
+import 'package:glam/widgets/views/products_grid.dart';
 
 class DesignerPage extends StatefulWidget {
   @override
@@ -18,6 +18,7 @@ class _DesignerPageState extends State<DesignerPage> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
+      backgroundColor: MkColors.black.shade900,
       body: Stack(
         fit: StackFit.expand,
         children: <Widget>[
@@ -28,13 +29,10 @@ class _DesignerPageState extends State<DesignerPage> {
               SliverList(
                 delegate: SliverChildListDelegate(
                   [
-                    SizedBox(height: 8.0),
                     _buildInfoBlock(),
-                    SizedBox(height: 8.0),
                     Divider(height: 0.0),
                     _buildCenterBlock(),
                     Divider(height: 0.0),
-                    SizedBox(height: 8.0),
                     _buildRelatedBlock(),
                   ],
                 ),
@@ -47,7 +45,8 @@ class _DesignerPageState extends State<DesignerPage> {
   }
 
   Widget _buildCenterBlock() {
-    return Padding(
+    return Container(
+      color: Colors.white,
       padding: const EdgeInsets.symmetric(vertical: 4.0),
       child: Column(
         children: <Widget>[
@@ -92,7 +91,7 @@ class _DesignerPageState extends State<DesignerPage> {
                 ),
           ),
           SizedBox(height: 16.0),
-          MkProductsGrid(brightness: Brightness.dark),
+          ProductsGrid(brightness: Brightness.dark),
           SizedBox(height: 48.0),
           Center(
             child: MkClearButton(
@@ -114,8 +113,9 @@ class _DesignerPageState extends State<DesignerPage> {
   }
 
   Widget _buildInfoBlock() {
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(24.0, 8.0, 0.0, 8.0),
+    return Container(
+      color: Colors.white,
+      padding: const EdgeInsets.fromLTRB(24.0, 16.0, 0.0, 8.0),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,

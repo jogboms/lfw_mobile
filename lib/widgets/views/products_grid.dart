@@ -3,11 +3,11 @@ import 'package:glam/widgets/partials/mk_product_item.dart';
 
 const _kScrollBarHeight = 228.0;
 
-class MkProductsGrid extends StatelessWidget {
+class ProductsGrid extends StatelessWidget {
   final double height;
   final Brightness brightness;
 
-  const MkProductsGrid({
+  const ProductsGrid({
     Key key,
     this.brightness = Brightness.light,
     this.height = _kScrollBarHeight,

@@ -29,48 +29,19 @@ class MkDrawer extends StatelessWidget {
               : MkColors.white,
           child: SafeArea(
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisSize: MainAxisSize.max,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 MkCloseButton(color: _color),
-                SizedBox(height: 56.0),
-                _buildListTile(
-                  text: "Events",
-                  onTap: () {},
-                  style: _listStyle,
-                ),
-                SizedBox(height: 32.0),
-                _buildListTile(
-                  text: "Designers",
-                  onTap: () {},
-                  style: _listStyle,
-                ),
-                SizedBox(height: 32.0),
-                _buildListTile(
-                  text: "Lookbooks",
-                  onTap: () {},
-                  style: _listStyle,
-                ),
-                SizedBox(height: 32.0),
-                _buildListTile(
-                  text: "Stories",
-                  onTap: () {},
-                  style: _listStyle,
-                ),
-                SizedBox(height: 32.0),
-                _buildListTile(
-                  text: "Contact",
-                  onTap: () {},
-                  style: _listStyle,
-                ),
-                Expanded(child: SizedBox()),
+                _buildItemLists(_listStyle),
                 Padding(
-                  padding: const EdgeInsets.only(left: _kPadLeft),
+                  padding: const EdgeInsets.only(left: _kPadLeft, bottom: 16.0),
                   child: Text(
                     "Jeremiah Ogbomo",
                     style: _theme.subhead3.copyWith(color: _color),
                   ),
                 ),
-                SizedBox(height: 16.0),
               ],
             ),
           ),
@@ -86,11 +57,48 @@ class MkDrawer extends StatelessWidget {
   }) {
     return ListTile(
       contentPadding: EdgeInsets.only(left: _kPadLeft),
+      dense: true,
       title: Text(
         text,
         style: style,
       ),
       onTap: onTap,
+    );
+  }
+
+  Widget _buildItemLists(TextStyle style) {
+    return Column(
+      children: <Widget>[
+        _buildListTile(
+          text: "Events",
+          onTap: () {},
+          style: style,
+        ),
+        SizedBox(height: 32.0),
+        _buildListTile(
+          text: "Designers",
+          onTap: () {},
+          style: style,
+        ),
+        SizedBox(height: 32.0),
+        _buildListTile(
+          text: "Lookbooks",
+          onTap: () {},
+          style: style,
+        ),
+        SizedBox(height: 32.0),
+        _buildListTile(
+          text: "Stories",
+          onTap: () {},
+          style: style,
+        ),
+        SizedBox(height: 32.0),
+        _buildListTile(
+          text: "Contact",
+          onTap: () {},
+          style: style,
+        ),
+      ],
     );
   }
 }

@@ -7,10 +7,10 @@ import 'package:glam/utils/mk_navigate.dart';
 import 'package:glam/utils/mk_theme.dart';
 import 'package:glam/widgets/partials/mk_back_button.dart';
 import 'package:glam/widgets/partials/mk_clear_button.dart';
-import 'package:glam/widgets/partials/mk_products_grid.dart';
 import 'package:glam/widgets/partials/mk_touchable_opacity.dart';
 import 'package:glam/widgets/screens/designers/designer_page.dart';
 import 'package:glam/widgets/views/image_view.dart';
+import 'package:glam/widgets/views/products_grid.dart';
 
 class EventPage extends StatefulWidget {
   final String tag;
@@ -63,7 +63,7 @@ class EventPageState extends State<EventPage> {
               style: MkTheme.of(context).subhead1.copyWith(color: Colors.white),
             ),
             SizedBox(height: 24.0),
-            MkProductsGrid(brightness: Brightness.dark),
+            ProductsGrid(brightness: Brightness.dark),
             SizedBox(height: 32.0),
             Text(
               "Designers",
