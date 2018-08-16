@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:glam/constants/mk_icons.dart';
 import 'package:glam/constants/mk_style.dart';
+import 'package:glam/utils/mk_navigate.dart';
 import 'package:glam/utils/mk_theme.dart';
 import 'package:glam/widgets/partials/mk_burger_bar.dart';
 import 'package:glam/widgets/partials/mk_clear_button.dart';
 import 'package:glam/widgets/partials/mk_drawer.dart';
 import 'package:glam/widgets/partials/mk_touchable_opacity.dart';
+import 'package:glam/widgets/screens/profile/my_list/my_list_page.dart';
 
 class ProfilePage extends StatefulWidget {
   @override
@@ -121,7 +123,11 @@ class _ProfilePageState extends State<ProfilePage> {
           _buildListTile(
             icon: MkIcons.Heart,
             text: "My List",
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).push<dynamic>(
+                MkNavigate.slideIn<dynamic>(new MyListPage()),
+              );
+            },
           ),
           Divider(height: 0.0, indent: 24.0),
           _buildListTile(
