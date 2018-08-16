@@ -6,27 +6,32 @@ const _kScrollBarHeight = 228.0;
 class ProductsGrid extends StatelessWidget {
   final double height;
   final Brightness brightness;
+  final EdgeInsets contentPadding;
 
   const ProductsGrid({
     Key key,
     this.brightness = Brightness.light,
     this.height = _kScrollBarHeight,
+    this.contentPadding = EdgeInsets.zero,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return new SizedBox(
-      height: height,
-      child: ListView.builder(
-        scrollDirection: Axis.horizontal,
-        itemCount: 5,
-        itemBuilder: (BuildContext context, int index) {
-          final _height = (height / 1.2) - 2.0;
-          return MkProductItem(
-            brightness: brightness,
-            size: Size(_height / 1.3125, _height),
-          );
-        },
+    return Padding(
+      padding: contentPadding,
+      child: new SizedBox(
+        height: height,
+        child: ListView.builder(
+          scrollDirection: Axis.horizontal,
+          itemCount: 5,
+          itemBuilder: (BuildContext context, int index) {
+            final _height = (height / 1.2) - 2.0;
+            return MkProductItem(
+              brightness: brightness,
+              size: Size(_height / 1.3125, _height),
+            );
+          },
+        ),
       ),
     );
   }

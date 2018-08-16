@@ -17,56 +17,63 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    return new MaterialApp(
-      title: MkStrings.appName,
-      color: kPrimarySwatch.shade900,
-      theme: new ThemeData(
-        accentColor: kAccentColor,
-        primarySwatch: kPrimarySwatch,
-        scaffoldBackgroundColor: kAccentColor,
-        primaryColor: kPrimaryColor,
-        primaryIconTheme: theme.primaryIconTheme.copyWith(
-          color: kPrimarySwatch,
-        ),
-        textTheme: theme.textTheme.copyWith(
-          body1: theme.textTheme.body1.merge(
-            MkTheme.of(context).body1,
-          ),
-          button: theme.textTheme.button.merge(
-            MkTheme.of(context).button,
-          ),
-        ),
-        splashColor: Colors.transparent,
-        buttonTheme: theme.buttonTheme.copyWith(
-          height: 48.0,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(5.0),
-          ),
-        ),
-        canvasColor: kAccentColor,
-        inputDecorationTheme: InputDecorationTheme(
-          focusedBorder: UnderlineInputBorder(
-            borderSide: BorderSide(color: kPrimarySwatch, width: 2.0),
-          ),
-          enabledBorder: UnderlineInputBorder(
-            borderSide: BorderSide(
-              color: MkColors.light_grey.withOpacity(.3),
+    return MkTheme(
+      child: Builder(
+        builder: (BuildContext context) {
+          final theme = Theme.of(context);
+
+          return new MaterialApp(
+            title: MkStrings.appName,
+            color: kPrimarySwatch.shade900,
+            theme: new ThemeData(
+              accentColor: kAccentColor,
+              primarySwatch: kPrimarySwatch,
+              scaffoldBackgroundColor: kAccentColor,
+              primaryColor: kPrimaryColor,
+              primaryIconTheme: theme.primaryIconTheme.copyWith(
+                color: kPrimarySwatch,
+              ),
+              textTheme: theme.textTheme.copyWith(
+                body1: theme.textTheme.body1.merge(
+                  MkTheme.of(context).body1,
+                ),
+                button: theme.textTheme.button.merge(
+                  MkTheme.of(context).button,
+                ),
+              ),
+              splashColor: Colors.transparent,
+              buttonTheme: theme.buttonTheme.copyWith(
+                height: 48.0,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(5.0),
+                ),
+              ),
+              canvasColor: kAccentColor,
+              inputDecorationTheme: InputDecorationTheme(
+                focusedBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: kPrimarySwatch, width: 2.0),
+                ),
+                enabledBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(
+                    color: MkColors.light_grey.withOpacity(.3),
+                  ),
+                ),
+                contentPadding: EdgeInsets.only(top: 13.0),
+                hintStyle: MkTheme.of(context).textfield,
+              ),
+              cursorColor: kPrimaryColor,
+              fontFamily: MkFonts.base,
+              hintColor: MkColors.light_grey,
             ),
-          ),
-          contentPadding: EdgeInsets.only(top: 13.0),
-          hintStyle: MkTheme.of(context).textfield,
-        ),
-        cursorColor: kPrimaryColor,
-        fontFamily: MkFonts.base,
-        hintColor: MkColors.light_grey,
+            onGenerateRoute: (RouteSettings settings) {
+              return new MkNavigateRoute<dynamic>(
+                builder: (_) => StartPage(),
+                settings: settings.copyWith(name: MkRoutes.start),
+              );
+            },
+          );
+        },
       ),
-      onGenerateRoute: (RouteSettings settings) {
-        return new MkNavigateRoute<dynamic>(
-          builder: (_) => StartPage(),
-          settings: settings.copyWith(name: MkRoutes.start),
-        );
-      },
     );
   }
 }

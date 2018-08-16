@@ -30,23 +30,25 @@ class MkProductItem extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            SizedBox.fromSize(
-              size: Size(size.width, size.height),
-              child: Material(
-                borderRadius: BorderRadius.circular(5.0),
-                child: new Ink.image(
-                  image: MkImages.o4,
-                  alignment: Alignment.topCenter,
-                  fit: BoxFit.cover,
-                  child: new InkWell(
-                    onTap: () {
-                      Navigator.of(context).push<dynamic>(
-                        MkNavigate.slideIn<dynamic>(
-                          ProductPage(),
-                        ),
-                      );
-                    },
-                    child: SizedBox(),
+            ClipRRect(
+              borderRadius: BorderRadius.circular(5.0),
+              child: SizedBox.fromSize(
+                size: Size(size.width, size.height),
+                child: Material(
+                  child: new Ink.image(
+                    image: MkImages.o4,
+                    alignment: Alignment.topCenter,
+                    fit: BoxFit.cover,
+                    child: new InkWell(
+                      onTap: () {
+                        Navigator.of(context).push<dynamic>(
+                          MkNavigate.slideIn<dynamic>(
+                            ProductPage(),
+                          ),
+                        );
+                      },
+                      child: SizedBox(),
+                    ),
                   ),
                 ),
               ),
