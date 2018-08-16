@@ -76,6 +76,7 @@ class _CollectionsPageState extends State<CollectionsPage> {
                             mkFadeInRoute(
                               builder: (BuildContext context) => MkDrawer(
                                     brightness: Brightness.dark,
+                                    currentPage: null,
                                   ),
                             ),
                           );

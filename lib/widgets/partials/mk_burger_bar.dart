@@ -7,11 +7,13 @@ import 'package:glam/widgets/partials/mk_search_button.dart';
 class MkBurgerBar extends StatelessWidget implements PreferredSizeWidget {
   final Brightness brightness;
   final MkPages currentPage;
+  final bool shouldSearch;
 
   const MkBurgerBar({
     Key key,
     @required this.currentPage,
     this.brightness = Brightness.light,
+    this.shouldSearch = true,
   }) : super(key: key);
 
   @override
@@ -35,12 +37,14 @@ class MkBurgerBar extends StatelessWidget implements PreferredSizeWidget {
           );
         },
       ),
-      actions: <Widget>[
-        MkSearchButton(
-          color: _color,
-          onPressed: () {},
-        ),
-      ],
+      actions: shouldSearch
+          ? <Widget>[
+              MkSearchButton(
+                color: _color,
+                onPressed: () {},
+              ),
+            ]
+          : null,
     );
   }
 
