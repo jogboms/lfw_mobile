@@ -52,31 +52,39 @@ class MkDrawer extends StatelessWidget {
               children: <Widget>[
                 MkCloseButton(color: _color),
                 _buildItemLists(context, _listStyle),
-                Padding(
-                  padding: const EdgeInsets.only(left: _kPadLeft, bottom: 36.0),
-                  child: MkTouchableOpacity(
-                    child: Text(
-                      "Jeremiah Ogbomo",
-                      style: _theme.subhead3.copyWith(color: _color),
-                    ),
-                    onPressed: () {
-                      if (MkPages.Profile == currentPage) {
-                        Navigator.of(context).pop();
-                        return;
-                      }
-
-                      Navigator.of(context).push<dynamic>(
-                        MkNavigate.slideIn<dynamic>(
-                          ProfilePage(),
-                        ),
-                      );
-                    },
-                  ),
-                ),
+                _buildProfileName(context, _theme, _color),
               ],
             ),
           ),
         ),
+      ),
+    );
+  }
+
+  Padding _buildProfileName(
+    BuildContext context,
+    MkTheme _theme,
+    MaterialColor _color,
+  ) {
+    return Padding(
+      padding: const EdgeInsets.only(left: _kPadLeft, bottom: 36.0),
+      child: MkTouchableOpacity(
+        child: Text(
+          "Jeremiah Ogbomo",
+          style: _theme.subhead3.copyWith(color: _color),
+        ),
+        onPressed: () {
+          if (MkPages.Profile == currentPage) {
+            Navigator.of(context).pop();
+            return;
+          }
+
+          Navigator.of(context).push<dynamic>(
+            MkNavigate.fadeIn<dynamic>(
+              ProfilePage(),
+            ),
+          );
+        },
       ),
     );
   }
@@ -101,7 +109,7 @@ class MkDrawer extends StatelessWidget {
             return;
           }
           Navigator.of(context).push<dynamic>(
-            MkNavigate.slideIn<dynamic>(widget),
+            MkNavigate.fadeIn<dynamic>(widget),
           );
         },
       ),

@@ -1,18 +1,19 @@
 TASKS:
   ☐ delay home screen for 2 secs
   ☐ fade back to Home and clear History
-  ☐ username same level with Explore button text if possible. 
   ☐ Put delay on appearance of close button when menu is clicked, and vice versa when it is dismissed.
   ☐ Event Name on Action Bar after scroll
   ☐ Number images in Lightbox just like onboard (e.g. 03 - 10).
-  ☐ Menu items: Events Designers Lookbooks Stories Contact
   ☐ Implement Search view
-  ☐ Implement My List views
   ☐ Implement Modals: Place Order, More Options, Share
-  ☐ Implement Profile/Settings views
-  ☐ Implement Lookbooks views
-  ☐ Implement Stories views
-
+  ☐ home + close button transition @high
+  
+  ✔ Implement Profile/Settings views @high @done(18-08-16 10:56)
+  ✔ username same level with Explore button text if possible. @done(18-08-16 09:38)
+  ✔ Menu items: Events Designers Lookbooks Stories Contact @done(18-08-16 09:38)
+  ✔ Implement My List views @done(18-08-16 09:38)
+  ✔ Implement Lookbooks views @done(18-08-16 09:38)
+  ✔ Implement Stories views @done(18-08-16 09:38)
   ✔ add back to home button on event_page @done(18-08-09 16:18)
   ✔ import new font set @done(18-08-08 14:16)
   ✔ rename app to GLAM @done(18-08-08 12:59)

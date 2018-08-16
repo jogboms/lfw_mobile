@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:glam/constants/mk_colors.dart';
 import 'package:glam/constants/mk_icons.dart';
 import 'package:glam/constants/mk_style.dart';
 import 'package:glam/utils/mk_navigate.dart';
 import 'package:glam/utils/mk_theme.dart';
 import 'package:glam/widgets/partials/mk_burger_bar.dart';
-import 'package:glam/widgets/partials/mk_clear_button.dart';
 import 'package:glam/widgets/partials/mk_drawer.dart';
 import 'package:glam/widgets/partials/mk_touchable_opacity.dart';
 import 'package:glam/widgets/screens/profile/my_list/my_list_page.dart';
+import 'package:glam/widgets/screens/profile/settings/settings_page.dart';
 
 class ProfilePage extends StatefulWidget {
   @override
@@ -65,7 +66,7 @@ class _ProfilePageState extends State<ProfilePage> {
               size: Size.square(28.0),
               child: DecoratedBox(
                 decoration: BoxDecoration(
-                  color: Colors.green,
+                  color: MkColors.black.shade900,
                   shape: BoxShape.circle,
                   border: Border.all(
                     color: Colors.white,
@@ -92,7 +93,7 @@ class _ProfilePageState extends State<ProfilePage> {
               "Jeremiah Ogbomo",
               style: MkTheme.of(context).title,
             ),
-            SizedBox(height: 8.0),
+            SizedBox(height: 4.0),
             Text(
               "Designer",
               style: MkTheme.of(context).subhead3,
@@ -111,7 +112,11 @@ class _ProfilePageState extends State<ProfilePage> {
           _buildListTile(
             icon: MkIcons.User_Alt,
             text: "Bio Data",
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).push<dynamic>(
+                MkNavigate.slideIn<dynamic>(new SettingsPage()),
+              );
+            },
           ),
           Divider(height: 0.0, indent: 24.0),
           _buildListTile(
@@ -152,16 +157,14 @@ class _ProfilePageState extends State<ProfilePage> {
     VoidCallback onPressed,
   }) {
     return ListTile(
-      contentPadding: EdgeInsets.only(left: 24.0),
+      contentPadding: EdgeInsets.symmetric(horizontal: 24.0),
       leading: Icon(icon),
       title: Text(
         text,
         style: MkTheme.of(context).body3,
       ),
-      trailing: MkClearButton(
-        child: Icon(MkIcons.Chevron___Right, size: 16.0),
-        onPressed: onPressed,
-      ),
+      trailing: Icon(MkIcons.Chevron___Right, size: 16.0),
+      onTap: onPressed,
     );
   }
 }

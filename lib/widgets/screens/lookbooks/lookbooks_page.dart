@@ -105,7 +105,6 @@ class _LookbooksPageState extends State<LookbooksPage> {
                       color: kHintColor,
                     ),
               ),
-              elevation: 0,
               items: <String>['2019', '2019', '2019'].map(
                 (String value) {
                   return new DropdownMenuItem<String>(
