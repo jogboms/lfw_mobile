@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:glam/constants/mk_colors.dart';
 import 'package:glam/constants/mk_images.dart';
+import 'package:glam/constants/mk_style.dart';
 import 'package:glam/models/my_list.dart';
 import 'package:glam/utils/mk_theme.dart';
 import 'package:glam/widgets/partials/mk_touchable_opacity.dart';
@@ -18,7 +19,7 @@ class MyListItem extends StatelessWidget {
     return new Row(
       children: <Widget>[
         ClipRRect(
-          borderRadius: BorderRadius.circular(5.0),
+          borderRadius: kBorderRadius,
           child: SizedBox(
             height: 124.0,
             child: Image(
@@ -32,7 +33,7 @@ class MyListItem extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-						// TODO @critical
+            // TODO @critical
             Text(
               "My Todo Item",
               // item.title,
@@ -49,7 +50,7 @@ class MyListItem extends StatelessWidget {
             ),
             SizedBox(height: 16.0),
             Material(
-              borderRadius: BorderRadius.circular(5.0),
+              borderRadius: kBorderRadius,
               color: MkColors.black,
               child: MkTouchableOpacity(
                 onPressed: () {},

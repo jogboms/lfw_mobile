@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:glam/constants/mk_colors.dart';
 import 'package:glam/constants/mk_icons.dart';
 import 'package:glam/constants/mk_images.dart';
-import 'package:glam/constants/mk_routes.dart';
-import 'package:glam/constants/mk_style.dart';
 import 'package:glam/utils/mk_theme.dart';
 import 'package:glam/widgets/partials/mk_back_button.dart';
 import 'package:glam/widgets/partials/mk_clear_button.dart';
@@ -93,20 +91,6 @@ class _DesignerPageState extends State<DesignerPage> {
           SizedBox(height: 16.0),
           ProductsGrid(brightness: Brightness.dark),
           SizedBox(height: 48.0),
-          Center(
-            child: MkClearButton(
-              child: Text(
-                "Back Home",
-                style: mkFontColor(Colors.white),
-              ),
-              onPressed: () {
-                Navigator.of(context).popUntil(
-                  ModalRoute.withName(MkRoutes.events),
-                );
-              },
-            ),
-          ),
-          SizedBox(height: 8.0),
         ],
       ),
     );

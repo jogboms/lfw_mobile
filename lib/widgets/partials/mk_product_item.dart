@@ -31,7 +31,7 @@ class MkProductItem extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             ClipRRect(
-              borderRadius: BorderRadius.circular(5.0),
+              borderRadius: kBorderRadius,
               child: SizedBox.fromSize(
                 size: Size(size.width, size.height),
                 child: Material(

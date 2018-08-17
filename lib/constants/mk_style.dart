@@ -14,6 +14,8 @@ const MaterialColor kTextBaseColor = MkColors.black;
 const MaterialColor kTitleBaseColor = MkColors.black;
 const MaterialColor kBackgroundBaseColor = MkColors.white;
 
+const BorderRadius kBorderRadius = const BorderRadius.all(Radius.circular(5.0));
+
 class MkBorderSide extends BorderSide {
   const MkBorderSide({
     Color color,

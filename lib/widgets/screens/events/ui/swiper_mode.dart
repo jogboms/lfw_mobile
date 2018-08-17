@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:glam/constants/mk_style.dart';
 import 'package:glam/utils/mk_theme.dart';
 
 class SwiperMode extends StatefulWidget {
@@ -57,17 +58,19 @@ class SwiperModeState extends State<SwiperMode> {
           children: <Widget>[
             Align(
               alignment: Alignment.centerLeft,
-              child: SizedBox(
-                width: widget.width / 1.325,
-                height: widget.height / 1.445,
-                child: Material(
-                  borderRadius: BorderRadius.circular(5.0),
-                  child: Hero(
-                    tag: "tagger-$index",
-                    child: new Image(
-                      image: widget.images[index],
-                      alignment: Alignment.topCenter,
-                      fit: BoxFit.cover,
+              child: ClipRRect(
+                borderRadius: kBorderRadius,
+                child: SizedBox(
+                  width: widget.width / 1.325,
+                  height: widget.height / 1.445,
+                  child: Material(
+                    child: Hero(
+                      tag: "tagger-$index",
+                      child: new Image(
+                        image: widget.images[index],
+                        alignment: Alignment.topCenter,
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   ),
                 ),

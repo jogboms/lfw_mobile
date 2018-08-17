@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:glam/constants/mk_colors.dart';
 import 'package:glam/constants/mk_images.dart';
-import 'package:glam/constants/mk_routes.dart';
 import 'package:glam/constants/mk_style.dart';
 import 'package:glam/utils/mk_navigate.dart';
 import 'package:glam/utils/mk_theme.dart';
 import 'package:glam/widgets/partials/mk_back_button.dart';
-import 'package:glam/widgets/partials/mk_clear_button.dart';
 import 'package:glam/widgets/partials/mk_touchable_opacity.dart';
 import 'package:glam/widgets/screens/designers/designer_page.dart';
 import 'package:glam/widgets/views/image_view.dart';
@@ -78,20 +76,6 @@ class EventPageState extends State<EventPage> {
             Divider(height: 32.0, color: Colors.white.withOpacity(.35)),
             _buidDesignerListItem(text: "Mr Jon", style: bodyStyle),
             SizedBox(height: 48.0),
-            Center(
-              child: MkClearButton(
-                child: Text(
-                  "Back Home",
-                  style: mkFontColor(Colors.white),
-                ),
-                onPressed: () {
-                  Navigator.of(context).popUntil(
-                    ModalRoute.withName(MkRoutes.events),
-                  );
-                },
-              ),
-            ),
-            SizedBox(height: 8.0),
           ],
         ),
       ),
@@ -151,29 +135,32 @@ class EventPageState extends State<EventPage> {
               itemBuilder: (BuildContext context, int index) {
                 return Padding(
                   padding: const EdgeInsets.only(right: 16.0),
-                  child: Container(
-                    width: 124.0,
-                    child: Material(
-                      borderRadius: BorderRadius.circular(5.0),
-                      child: new Ink.image(
-                        image: MkImages.o4,
-                        fit: BoxFit.cover,
-                        child: new InkWell(
-                          onTap: () {
-                            Navigator.of(context).push<dynamic>(
-                              fadeInRoute(
-                                images: [
-                                  MkImages.o4,
-                                  MkImages.o4,
-                                  MkImages.o4,
-                                  MkImages.o4,
-                                  MkImages.o4,
-                                ],
-                                index: index,
-                              ),
-                            );
-                          },
-                          child: SizedBox(),
+                  child: ClipRRect(
+                    borderRadius: kBorderRadius,
+                    child: Container(
+                      width: 124.0,
+                      child: Material(
+                        borderRadius: kBorderRadius,
+                        child: new Ink.image(
+                          image: MkImages.o4,
+                          fit: BoxFit.cover,
+                          child: new InkWell(
+                            onTap: () {
+                              Navigator.of(context).push<dynamic>(
+                                fadeInRoute(
+                                  images: [
+                                    MkImages.o4,
+                                    MkImages.o4,
+                                    MkImages.o4,
+                                    MkImages.o4,
+                                    MkImages.o4,
+                                  ],
+                                  index: index,
+                                ),
+                              );
+                            },
+                            child: SizedBox(),
+                          ),
                         ),
                       ),
                     ),

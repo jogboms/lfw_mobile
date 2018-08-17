@@ -30,7 +30,7 @@ class StoryListItem extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           ClipRRect(
-            borderRadius: BorderRadius.circular(5.0),
+            borderRadius: kBorderRadius,
             child: SizedBox.fromSize(
               size: Size.fromHeight(140.0),
               child: Image(

@@ -17,7 +17,7 @@ class BookGridItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
-      borderRadius: BorderRadius.circular(5.0),
+      borderRadius: kBorderRadius,
       child: SizedBox(
         height: 500.0,
         child: Stack(

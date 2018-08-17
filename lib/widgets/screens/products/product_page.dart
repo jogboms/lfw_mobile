@@ -4,16 +4,17 @@ import 'package:glam/constants/mk_colors.dart';
 import 'package:glam/constants/mk_icons.dart';
 import 'package:glam/constants/mk_images.dart';
 import 'package:glam/constants/mk_style.dart';
-import 'package:glam/utils/mk_launch.dart';
-import 'package:glam/utils/mk_navigate.dart';
+import 'package:glam/utils/mk_child_dialog.dart';
 import 'package:glam/utils/mk_theme.dart';
 import 'package:glam/widgets/partials/mk_back_button.dart';
 import 'package:glam/widgets/partials/mk_clear_button.dart';
 import 'package:glam/widgets/partials/mk_primary_button.dart';
-import 'package:glam/widgets/partials/mk_touchable_opacity.dart';
-import 'package:glam/widgets/screens/designers/designer_page.dart';
+import 'package:glam/widgets/screens/products/ui/context_dialog.dart';
+import 'package:glam/widgets/screens/products/ui/info_block.dart';
+import 'package:glam/widgets/screens/products/ui/order_modal.dart';
 import 'package:glam/widgets/views/image_view.dart';
 import 'package:glam/widgets/views/products_grid.dart';
+import 'package:share/share.dart';
 
 class ProductPage extends StatefulWidget {
   @override
@@ -37,7 +38,7 @@ class _ProductPageState extends State<ProductPage> {
                     _buildButtonBlock(),
                     Divider(height: 0.0),
                     SizedBox(height: 8.0),
-                    _buildInfoBlock(),
+                    InfoBlock(),
                     SizedBox(height: 8.0),
                     Divider(height: 0.0),
                     _buildCenterBlock(),
@@ -56,15 +57,29 @@ class _ProductPageState extends State<ProductPage> {
             child: Container(
               padding: const EdgeInsets.all(16.0),
               color: Colors.white,
-              child: MkPrimaryButton(
-                onPressed: () {
-                  const product = "Mini Cami Skater Dress";
-                  email(
-                    "GLAM - Enquiry for $product",
-                    "nd@siliconbear.com",
-                  );
-                },
-                child: Text("Contact"),
+              child: Theme(
+                data: Theme.of(context).copyWith(
+                  canvasColor: Colors.transparent,
+                ),
+                child: Builder(
+                  builder: (BuildContext context) {
+                    return MkPrimaryButton(
+                      onPressed: () async {
+                        await showModalBottomSheet<dynamic>(
+                          builder: (BuildContext context) {
+                            return Material(
+                              color: MkColors.white,
+                              borderRadius: kBorderRadius,
+                              child: new OrderModal(),
+                            );
+                          },
+                          context: context,
+                        );
+                      },
+                      child: Text("Place Order"),
+                    );
+                  },
+                ),
               ),
             ),
           )
@@ -126,7 +141,16 @@ class _ProductPageState extends State<ProductPage> {
           Container(width: 1.0, height: 32.0, color: kBorderSideColor),
           MkClearButton(
             child: Icon(MkIcons.Share___3, size: 18.0),
-            onPressed: () {},
+            onPressed: () {
+              //
+              final RenderBox box = context.findRenderObject();
+              Share.plainText(
+                title: "Title",
+                text: "This is a text",
+              ).share(
+                sharePositionOrigin: box.localToGlobal(Offset.zero) & box.size,
+              );
+            },
           ),
         ],
       ),
@@ -151,51 +175,30 @@ class _ProductPageState extends State<ProductPage> {
     );
   }
 
-  Widget _buildInfoBlock() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 8.0),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: <Widget>[
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Text(
-                "Mini Cami Skater Dress",
-                style: MkTheme.of(context).subhead1,
-              ),
-              SizedBox(height: 2.0),
-              MkTouchableOpacity(
-                child: Text(
-                  "Lanre DaSilva",
-                  style: MkTheme.of(context).subhead1Light,
-                ),
-                onPressed: () {
-                  MkNavigate(context, DesignerPage());
-                },
-              ),
-            ],
-          ),
-          Text(
-            "N1600",
-            style: MkTheme.of(context).subhead1Bold,
-          ),
-        ],
-      ),
-    );
-  }
-
   Widget _buildAppBar() {
     return SliverAppBar(
       backgroundColor: MkColors.black.shade900,
-      brightness: Brightness.dark,
-      leading: MkBackButton(color: Colors.white),
+      brightness: Brightness.light,
+      leading: MkBackButton(color: Colors.black),
       pinned: true,
       expandedHeight: MediaQuery.of(context).size.height / 2.0,
       flexibleSpace: FlexibleSpaceBar(
         background: _buildAppBarBackground(),
       ),
+      actions: <Widget>[
+        MkClearButton(
+          child: new Icon(
+            MkIcons.More,
+            color: Colors.black,
+          ),
+          onPressed: () async {
+            await mkShowChildDialog<dynamic>(
+              context: context,
+              child: new ContextDialog(),
+            );
+          },
+        ),
+      ],
     );
   }
 

@@ -121,7 +121,7 @@ class OnboardPageState extends State<OnboardPage> {
             width: media.size.height / 2.5,
             height: media.size.height / 1.85,
             child: Material(
-              borderRadius: BorderRadius.circular(5.0),
+              borderRadius: kBorderRadius,
               child: new Image(
                 image: images[index],
                 alignment: Alignment.topCenter,

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:glam/constants/mk_colors.dart';
 import 'package:glam/constants/mk_fonts.dart';
 import 'package:glam/constants/mk_routes.dart';
 import 'package:glam/constants/mk_strings.dart';
@@ -45,7 +44,7 @@ class App extends StatelessWidget {
               buttonTheme: theme.buttonTheme.copyWith(
                 height: 48.0,
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(5.0),
+                  borderRadius: kBorderRadius,
                 ),
               ),
               canvasColor: kAccentColor,
@@ -55,7 +54,8 @@ class App extends StatelessWidget {
                 ),
                 enabledBorder: UnderlineInputBorder(
                   borderSide: BorderSide(
-                    color: MkColors.light_grey.withOpacity(.3),
+                    color: kBorderSideColor.withOpacity(.125),
+                    // color: Colors.red,
                   ),
                 ),
                 contentPadding: EdgeInsets.only(top: 13.0),
@@ -63,7 +63,8 @@ class App extends StatelessWidget {
               ),
               cursorColor: kPrimaryColor,
               fontFamily: MkFonts.base,
-              hintColor: MkColors.light_grey,
+              hintColor: kHintColor,
+              dividerColor: kBorderSideColor,
             ),
             onGenerateRoute: (RouteSettings settings) {
               return new MkNavigateRoute<dynamic>(
