@@ -4,25 +4,21 @@ import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:glam/constants/mk_colors.dart';
 import 'package:glam/constants/mk_icons.dart';
 import 'package:glam/constants/mk_images.dart';
-import 'package:glam/utils/mk_drawer.dart';
 import 'package:glam/utils/mk_navigate.dart';
 import 'package:glam/utils/mk_theme.dart';
 import 'package:glam/widgets/partials/mk_burger_bar.dart';
 import 'package:glam/widgets/partials/mk_clear_button.dart';
-import 'package:glam/widgets/views/side_bar_drawer.dart';
 import 'package:glam/widgets/partials/mk_primary_button.dart';
 import 'package:glam/widgets/screens/events/event_page.dart';
 import 'package:glam/widgets/screens/events/ui/swiper_mode.dart';
+import 'package:glam/widgets/views/side_bar_drawer.dart';
 
 class EventsPage extends StatefulWidget {
   @override
   _EventsPageState createState() => new _EventsPageState();
 }
 
-class _EventsPageState extends State<EventsPage> with MkDrawerProvider {
-  @override
-  final scaffoldKey = GlobalKey<ScaffoldState>();
-
+class _EventsPageState extends State<EventsPage> {
   final _controller = new SwiperController();
   int activeIndex = 0;
   final List<ImageProvider> images = [
@@ -52,7 +48,6 @@ class _EventsPageState extends State<EventsPage> with MkDrawerProvider {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-      key: scaffoldKey,
       backgroundColor: MkColors.black.shade900,
       // drawer: const SideBarDrawer(),
       appBar: new MkBurgerBar(

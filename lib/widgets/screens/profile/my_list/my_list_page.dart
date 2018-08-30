@@ -1,10 +1,9 @@
-import 'dart:math' show max;
-
 import 'package:flutter/material.dart';
 import 'package:glam/constants/mk_colors.dart';
 import 'package:glam/constants/mk_images.dart';
 import 'package:glam/constants/mk_style.dart';
 import 'package:glam/models/my_list.dart';
+import 'package:glam/utils/mk_sliver_separator_builder_delegate.dart';
 import 'package:glam/utils/mk_theme.dart';
 import 'package:glam/widgets/partials/mk_back_button.dart';
 import 'package:glam/widgets/screens/profile/my_list/my_list_item.dart';
@@ -78,19 +77,22 @@ class _MyListPageState extends State<MyListPage> {
               ),
             ),
             SliverPadding(
-                padding: const EdgeInsets.symmetric(
-                    horizontal: 16.0, vertical: 24.0),
-                sliver: SliverList(
-                  delegate: SliverChildBuilderDelegate(
-                    (BuildContext context, int index) {
-                      final int itemIndex = index ~/ 2;
-                      return (index == 0 || index.isEven)
-                          ? MyListItem(item: listItems[itemIndex])
-                          : new Divider(height: 32.0);
-                    },
-                    childCount: max(0, listItems.length * 2 - 1),
-                  ),
-                ))
+              padding: const EdgeInsets.symmetric(
+                horizontal: 16.0,
+                vertical: 24.0,
+              ),
+              sliver: SliverList(
+                delegate: MkSliverSeparatorBuilderDelegate(
+                  childCount: listItems.length,
+                  builder: (BuildContext context, int index) {
+                    return MyListItem(item: listItems[index]);
+                  },
+                  separatorBuilder: (BuildContext context, int index) {
+                    return Divider(height: 32.0);
+                  },
+                ),
+              ),
+            )
           ],
         ),
       ),

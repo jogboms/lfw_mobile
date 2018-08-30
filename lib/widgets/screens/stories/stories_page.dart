@@ -1,14 +1,13 @@
-import 'dart:math' show max;
-
 import 'package:flutter/material.dart';
 import 'package:glam/constants/mk_colors.dart';
 import 'package:glam/constants/mk_images.dart';
 import 'package:glam/constants/mk_style.dart';
 import 'package:glam/models/story.dart';
+import 'package:glam/utils/mk_sliver_separator_builder_delegate.dart';
 import 'package:glam/utils/mk_theme.dart';
 import 'package:glam/widgets/partials/mk_burger_bar.dart';
-import 'package:glam/widgets/views/side_bar_drawer.dart';
 import 'package:glam/widgets/screens/stories/ui/story_list_item.dart';
+import 'package:glam/widgets/views/side_bar_drawer.dart';
 
 class StoriesPage extends StatefulWidget {
   @override
@@ -136,14 +135,14 @@ class _StoriesPageState extends State<StoriesPage> {
                       padding:
                           const EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 56.0),
                       sliver: SliverList(
-                        delegate: SliverChildBuilderDelegate(
-                          (BuildContext context, int index) {
-                            final int itemIndex = index ~/ 2;
-                            return (index == 0 || index.isEven)
-                                ? StoryListItem(story: stories[itemIndex])
-                                : new Divider(height: 32.0);
+                        delegate: MkSliverSeparatorBuilderDelegate(
+                          childCount: stories.length,
+                          builder: (BuildContext context, int index) {
+                            return StoryListItem(story: stories[index]);
                           },
-                          childCount: max(0, stories.length * 2 - 1),
+                          separatorBuilder: (BuildContext context, int index) {
+                            return Divider(height: 32.0);
+                          },
                         ),
                       ),
                     )
