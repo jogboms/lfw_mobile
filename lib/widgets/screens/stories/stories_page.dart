@@ -7,7 +7,7 @@ import 'package:glam/constants/mk_style.dart';
 import 'package:glam/models/story.dart';
 import 'package:glam/utils/mk_theme.dart';
 import 'package:glam/widgets/partials/mk_burger_bar.dart';
-import 'package:glam/widgets/partials/mk_drawer.dart';
+import 'package:glam/widgets/views/side_bar_drawer.dart';
 import 'package:glam/widgets/screens/stories/ui/story_list_item.dart';
 
 class StoriesPage extends StatefulWidget {
@@ -133,7 +133,8 @@ class _StoriesPageState extends State<StoriesPage> {
                     ),
                     SliverToBoxAdapter(child: SizedBox(height: 24.0)),
                     SliverPadding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                      padding:
+                          const EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 56.0),
                       sliver: SliverList(
                         delegate: SliverChildBuilderDelegate(
                           (BuildContext context, int index) {

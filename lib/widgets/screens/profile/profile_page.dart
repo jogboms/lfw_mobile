@@ -5,7 +5,7 @@ import 'package:glam/constants/mk_style.dart';
 import 'package:glam/utils/mk_navigate.dart';
 import 'package:glam/utils/mk_theme.dart';
 import 'package:glam/widgets/partials/mk_burger_bar.dart';
-import 'package:glam/widgets/partials/mk_drawer.dart';
+import 'package:glam/widgets/views/side_bar_drawer.dart';
 import 'package:glam/widgets/partials/mk_touchable_opacity.dart';
 import 'package:glam/widgets/screens/profile/my_list/my_list_page.dart';
 import 'package:glam/widgets/screens/profile/settings/settings_page.dart';

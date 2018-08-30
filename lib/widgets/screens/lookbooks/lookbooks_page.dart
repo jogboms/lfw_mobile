@@ -3,7 +3,7 @@ import 'package:glam/constants/mk_style.dart';
 import 'package:glam/models/lookbook.dart';
 import 'package:glam/utils/mk_theme.dart';
 import 'package:glam/widgets/partials/mk_burger_bar.dart';
-import 'package:glam/widgets/partials/mk_drawer.dart';
+import 'package:glam/widgets/views/side_bar_drawer.dart';
 import 'package:glam/widgets/screens/lookbooks/ui/book_grid_item.dart';
 
 class LookbooksPage extends StatefulWidget {
@@ -59,7 +59,7 @@ class _LookbooksPageState extends State<LookbooksPage> {
 
   Widget _buildGridItems() {
     return SliverPadding(
-      padding: EdgeInsets.symmetric(horizontal: 16.0),
+      padding: const EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 56.0),
       sliver: SliverGrid(
         gridDelegate: new SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,

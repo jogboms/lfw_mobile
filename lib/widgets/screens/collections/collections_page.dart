@@ -6,9 +6,10 @@ import 'package:glam/constants/mk_images.dart';
 import 'package:glam/constants/mk_style.dart';
 import 'package:glam/utils/mk_fade_in_route.dart';
 import 'package:glam/utils/mk_navigate.dart';
+import 'package:glam/utils/mk_status_bar.dart';
 import 'package:glam/utils/mk_theme.dart';
 import 'package:glam/widgets/partials/mk_burger_button.dart';
-import 'package:glam/widgets/partials/mk_drawer.dart';
+import 'package:glam/widgets/views/side_bar_drawer.dart';
 import 'package:glam/widgets/partials/mk_primary_button.dart';
 import 'package:glam/widgets/partials/mk_search_button.dart';
 import 'package:glam/widgets/screens/events/events_page.dart';
@@ -46,8 +47,8 @@ class _CollectionsPageState extends State<CollectionsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: new AnnotatedRegion<SystemUiOverlayStyle>(
-        value: SystemUiOverlayStyle.dark,
+      body: new MkStatusBar(
+        brightness: Brightness.dark,
         child: Stack(
           fit: StackFit.expand,
           children: <Widget>[
@@ -74,7 +75,7 @@ class _CollectionsPageState extends State<CollectionsPage> {
                         onPressed: () {
                           Navigator.of(context).push<dynamic>(
                             mkFadeInRoute(
-                              builder: (BuildContext context) => MkDrawer(
+                              builder: (BuildContext context) => SideBarDrawer(
                                     brightness: Brightness.dark,
                                     currentPage: null,
                                   ),

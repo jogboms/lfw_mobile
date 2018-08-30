@@ -91,7 +91,7 @@ class _SettingsPageState extends State<SettingsPage> {
                 SizedBox(height: 24.0),
                 _buildTextFormField(
                   hintText: "Bio",
-                  maxLines: 4,
+                  maxLines: null,
                 ),
                 SizedBox(height: 24.0),
                 MkPrimaryButton(

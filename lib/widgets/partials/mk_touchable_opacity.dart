@@ -130,7 +130,7 @@ class _MkTouchableOpacityState extends State<MkTouchableOpacity>
             curve: Curves.decelerate,
           )),
           child: Padding(
-            padding: widget.padding ?? const EdgeInsets.all(16.0),
+            padding: widget.padding ?? EdgeInsets.zero,
             child: new Center(
               widthFactor: 1.0,
               heightFactor: 1.0,

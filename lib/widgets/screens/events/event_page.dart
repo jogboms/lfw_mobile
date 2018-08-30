@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:glam/constants/mk_colors.dart';
+import 'package:glam/constants/mk_icons.dart';
 import 'package:glam/constants/mk_images.dart';
-import 'package:glam/constants/mk_style.dart';
-import 'package:glam/utils/mk_navigate.dart';
 import 'package:glam/utils/mk_theme.dart';
 import 'package:glam/widgets/partials/mk_back_button.dart';
 import 'package:glam/widgets/partials/mk_touchable_opacity.dart';
-import 'package:glam/widgets/screens/designers/designer_page.dart';
-import 'package:glam/widgets/views/image_view.dart';
-import 'package:glam/widgets/views/products_grid.dart';
+import 'package:glam/widgets/screens/events/ui/event_footer.dart';
+import 'package:glam/widgets/views/photo_reel_grid.dart';
+import 'package:share/share.dart';
 
 class EventPage extends StatefulWidget {
   final String tag;
@@ -27,73 +26,55 @@ class EventPage extends StatefulWidget {
 }
 
 class EventPageState extends State<EventPage> {
+  final ScrollController _scrollController = new ScrollController();
+  bool isAtTop = false;
+
+  void _updateScrollPosition() {
+    if (_scrollController.position.maxScrollExtent ==
+        _scrollController.offset) {
+      setState(() => isAtTop = true);
+    } else if (8.0 < _scrollController.offset) {
+      setState(() => isAtTop = false);
+    }
+  }
+
+  @override
+  void initState() {
+    _scrollController.addListener(_updateScrollPosition);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _scrollController.removeListener(_updateScrollPosition);
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
       backgroundColor: MkColors.black.shade900,
-      body: CustomScrollView(
-        slivers: <Widget>[
-          _buildAppBar(),
-          SliverList(
-            delegate: SliverChildListDelegate([
-              _buildBody(),
-              _buildFooter(),
-            ]),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildFooter() {
-    final bodyStyle = MkTheme.of(context).body1.copyWith(color: Colors.white);
-    return Container(
-      color: MkColors.black.shade900,
-      padding: EdgeInsets.all(16.0),
-      child: SafeArea(
-        top: false,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(height: 16.0),
-            Text(
-              "Shop The Event",
-              style: MkTheme.of(context).subhead1.copyWith(color: Colors.white),
+      body: new NestedScrollView(
+        controller: _scrollController,
+        headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
+          return <Widget>[
+            new SliverOverlapAbsorber(
+              handle: NestedScrollView.sliverOverlapAbsorberHandleFor(context),
+              child: _buildAppBar(),
             ),
-            SizedBox(height: 24.0),
-            ProductsGrid(brightness: Brightness.dark),
-            SizedBox(height: 32.0),
-            Text(
-              "Designers",
-              style: MkTheme.of(context).subhead1.copyWith(color: Colors.white),
+          ];
+        },
+        body: CustomScrollView(
+          slivers: <Widget>[
+            SliverList(
+              delegate: SliverChildListDelegate([
+                _buildBody(),
+                new EventFooter(),
+              ]),
             ),
-            SizedBox(height: 24.0),
-            _buidDesignerListItem(text: "Zara Nicols", style: bodyStyle),
-            Divider(height: 32.0, color: Colors.white.withOpacity(.35)),
-            _buidDesignerListItem(text: "Jumai Willis", style: bodyStyle),
-            Divider(height: 32.0, color: Colors.white.withOpacity(.35)),
-            _buidDesignerListItem(text: "Mai Atafo", style: bodyStyle),
-            Divider(height: 32.0, color: Colors.white.withOpacity(.35)),
-            _buidDesignerListItem(text: "Mr Jon", style: bodyStyle),
-            SizedBox(height: 48.0),
           ],
         ),
       ),
-    );
-  }
-
-  Widget _buidDesignerListItem({
-    String text,
-    TextStyle style,
-  }) {
-    return MkTouchableOpacity(
-      child: Text(
-        text,
-        style: style,
-      ),
-      onPressed: () {
-        MkNavigate(context, DesignerPage());
-      },
     );
   }
 
@@ -104,7 +85,7 @@ class EventPageState extends State<EventPage> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          SizedBox(height: 24.0),
+          SizedBox(height: 96.0),
           Text(
             widget.title,
             style: MkTheme.of(context).display2,
@@ -127,47 +108,14 @@ class EventPageState extends State<EventPage> {
             style: MkTheme.of(context).body2,
           ),
           SizedBox(height: 24.0),
-          SizedBox(
-            height: 164.0,
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: 5,
-              itemBuilder: (BuildContext context, int index) {
-                return Padding(
-                  padding: const EdgeInsets.only(right: 16.0),
-                  child: ClipRRect(
-                    borderRadius: kBorderRadius,
-                    child: Container(
-                      width: 124.0,
-                      child: Material(
-                        borderRadius: kBorderRadius,
-                        child: new Ink.image(
-                          image: MkImages.o4,
-                          fit: BoxFit.cover,
-                          child: new InkWell(
-                            onTap: () {
-                              Navigator.of(context).push<dynamic>(
-                                fadeInRoute(
-                                  images: [
-                                    MkImages.o4,
-                                    MkImages.o4,
-                                    MkImages.o4,
-                                    MkImages.o4,
-                                    MkImages.o4,
-                                  ],
-                                  index: index,
-                                ),
-                              );
-                            },
-                            child: SizedBox(),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                );
-              },
-            ),
+          new PhotoReelGrid(
+            images: <ImageProvider>[
+              MkImages.o4,
+              MkImages.o2,
+              MkImages.o3,
+              MkImages.o1,
+              MkImages.o4,
+            ],
           ),
           SizedBox(height: 24.0),
           Text(
@@ -184,12 +132,21 @@ class EventPageState extends State<EventPage> {
           SizedBox(height: 8.0),
           Row(
             children: <Widget>[
-              Text("Share With", style: MkTheme.of(context).bodyMedium),
+              Text("Share Event", style: MkTheme.of(context).bodyMedium),
               Expanded(child: SizedBox()),
-              Icon(Icons.sentiment_dissatisfied),
-              Icon(Icons.sentiment_neutral),
-              Icon(Icons.sentiment_satisfied),
-              Icon(Icons.sentiment_very_satisfied),
+              MkTouchableOpacity(
+                child: Icon(MkIcons.Share___3, size: 18.0),
+                onPressed: () {
+                  final RenderBox box = context.findRenderObject();
+                  Share.plainText(
+                    title: "Title",
+                    text: "This is a text",
+                  ).share(
+                    sharePositionOrigin:
+                        box.localToGlobal(Offset.zero) & box.size,
+                  );
+                },
+              ),
             ],
           ),
           SizedBox(height: 16.0),
@@ -205,16 +162,14 @@ class EventPageState extends State<EventPage> {
       expandedHeight: MediaQuery.of(context).size.height / 1.28,
       leading: MkBackButton(color: Colors.white),
       pinned: true,
-      centerTitle: true,
-      // title: Text(
-      //   widget.title,
-      //   style: MkTheme.of(context).body1.copyWith(color: Colors.white),
-      // ),
+      centerTitle: false,
+      title: isAtTop
+          ? Text(
+              widget.title,
+              style: MkTheme.of(context).subhead1.copyWith(color: Colors.white),
+            )
+          : null,
       flexibleSpace: new FlexibleSpaceBar(
-        // title: Text(
-        //   widget.title,
-        //   style: MkTheme.of(context).body1.copyWith(color: Colors.white),
-        // ),
         background: _buildTopBackground(),
       ),
     );

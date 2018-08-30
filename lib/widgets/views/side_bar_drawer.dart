@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:glam/constants/mk_colors.dart';
 import 'package:glam/utils/mk_navigate.dart';
+import 'package:glam/utils/mk_status_bar.dart';
 import 'package:glam/utils/mk_theme.dart';
 import 'package:glam/widgets/partials/mk_close_button.dart';
 import 'package:glam/widgets/partials/mk_touchable_opacity.dart';
@@ -9,6 +10,7 @@ import 'package:glam/widgets/screens/events/events_page.dart';
 import 'package:glam/widgets/screens/lookbooks/lookbooks_page.dart';
 import 'package:glam/widgets/screens/profile/profile_page.dart';
 import 'package:glam/widgets/screens/stories/stories_page.dart';
+import 'package:glam/widgets/views/placeholder_view.dart';
 
 enum MkPages {
   Events,
@@ -21,11 +23,11 @@ enum MkPages {
 
 const double _kPadLeft = 48.0;
 
-class MkDrawer extends StatelessWidget {
+class SideBarDrawer extends StatelessWidget {
   final Brightness brightness;
   final MkPages currentPage;
 
-  const MkDrawer({
+  const SideBarDrawer({
     Key key,
     @required this.currentPage,
     this.brightness = Brightness.light,
@@ -37,8 +39,8 @@ class MkDrawer extends StatelessWidget {
     final _color = brightness == Brightness.dark ? MkColors.white : null;
     final _listStyle = _theme.display2.copyWith(color: _color);
 
-    return new AnnotatedRegion<SystemUiOverlayStyle>(
-      value: SystemUiOverlayStyle.light,
+    return new MkStatusBar(
+      brightness: Brightness.light,
       child: Drawer(
         child: Container(
           color: brightness == Brightness.dark
@@ -73,18 +75,7 @@ class MkDrawer extends StatelessWidget {
           "Jeremiah Ogbomo",
           style: _theme.subhead3.copyWith(color: _color),
         ),
-        onPressed: () {
-          if (MkPages.Profile == currentPage) {
-            Navigator.of(context).pop();
-            return;
-          }
-
-          Navigator.of(context).push<dynamic>(
-            MkNavigate.fadeIn<dynamic>(
-              ProfilePage(),
-            ),
-          );
-        },
+        onPressed: () => onNavigate(context, MkPages.Profile, ProfilePage()),
       ),
     );
   }
@@ -103,15 +94,7 @@ class MkDrawer extends StatelessWidget {
           text,
           style: style,
         ),
-        onPressed: () {
-          if (page == currentPage) {
-            Navigator.of(context).pop();
-            return;
-          }
-          Navigator.of(context).push<dynamic>(
-            MkNavigate.fadeIn<dynamic>(widget),
-          );
-        },
+        onPressed: () => onNavigate(context, page, widget),
       ),
     );
   }
@@ -131,7 +114,7 @@ class MkDrawer extends StatelessWidget {
         _buildListTile(
           context: context,
           text: "Designers",
-          widget: new LookbooksPage(),
+          widget: new PlaceholderView(),
           page: MkPages.Designers,
           style: style,
         ),
@@ -155,11 +138,22 @@ class MkDrawer extends StatelessWidget {
         _buildListTile(
           context: context,
           text: "Contact",
-          widget: new LookbooksPage(),
+          widget: new PlaceholderView(),
           page: MkPages.Contact,
           style: style,
         ),
       ],
+    );
+  }
+
+  void onNavigate(BuildContext context, MkPages page, Widget widget) {
+    Navigator.of(context).pop();
+
+    if (page == currentPage) {
+      return;
+    }
+    Navigator.of(context).push<dynamic>(
+      MkNavigate.fadeIn<dynamic>(widget),
     );
   }
 }

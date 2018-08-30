@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:glam/utils/mk_fade_in_route.dart';
 import 'package:glam/utils/mk_navigate.dart';
 import 'package:glam/widgets/partials/mk_burger_button.dart';
-import 'package:glam/widgets/partials/mk_drawer.dart';
+import 'package:glam/widgets/views/side_bar_drawer.dart';
 import 'package:glam/widgets/partials/mk_search_button.dart';
 import 'package:glam/widgets/screens/search/search_page.dart';
 
@@ -31,7 +31,7 @@ class MkBurgerBar extends StatelessWidget implements PreferredSizeWidget {
           // showDrawer();
           Navigator.of(context).push<dynamic>(
             mkFadeInRoute(
-              builder: (BuildContext context) => MkDrawer(
+              builder: (BuildContext context) => SideBarDrawer(
                     brightness: Brightness.dark,
                     currentPage: currentPage,
                   ),

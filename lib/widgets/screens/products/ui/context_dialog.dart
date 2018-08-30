@@ -15,12 +15,13 @@ class ContextDialog extends StatelessWidget {
       child: Material(
         borderRadius: kBorderRadius,
         child: Container(
-          padding: EdgeInsets.symmetric(horizontal: 48.0, vertical: 16.0),
+          padding: EdgeInsets.symmetric(vertical: 16.0),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               MkTouchableOpacity(
+                padding: EdgeInsets.symmetric(horizontal: 48.0, vertical: 16.0),
                 child: Text(
                   "Show More Text",
                   style: MkTheme.of(context).bodyMedium,

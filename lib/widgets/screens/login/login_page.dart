@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:glam/constants/mk_colors.dart';
 import 'package:glam/constants/mk_images.dart';
+import 'package:glam/utils/mk_status_bar.dart';
 import 'package:glam/utils/mk_theme.dart';
 import 'package:glam/widgets/screens/login/ui/login_form.dart';
 import 'package:glam/widgets/screens/login/ui/signup_form.dart';
@@ -18,8 +19,8 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-      body: new AnnotatedRegion<SystemUiOverlayStyle>(
-        value: SystemUiOverlayStyle.dark,
+      body: new MkStatusBar(
+        brightness: Brightness.dark,
         child: SafeArea(
           child: SingleChildScrollView(
             padding: const EdgeInsets.symmetric(horizontal: 32.0),

@@ -9,6 +9,7 @@ class MkBackHomeButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MkTouchableOpacity(
+      padding: EdgeInsets.symmetric(horizontal: 48.0, vertical: 16.0),
       child: Text(
         "Back to Events",
         style: MkTheme.of(context).bodyMedium,

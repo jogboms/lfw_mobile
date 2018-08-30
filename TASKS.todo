@@ -1,10 +1,10 @@
 TASKS:
-  ☐ delay home screen for 2 secs
-  ☐ fade back to Home and clear History
-  ☐ Event Name on Action Bar after scroll
-  ☐ Number images in Lightbox just like onboard (e.g. 03 - 10).
-  ☐ home + close button transition @high
+  ☐ home + close button transition @later
   
+  ✔ Number images in Lightbox just like onboard (e.g. 03 - 10). @done(18-08-17 11:05)
+  ✔ Event Name on Action Bar after scroll @done(18-08-17 10:46)
+  ✔ delay home screen for 2 secs @done(18-08-17 09:28)
+  ✔ fade back to Home and clear History @done(18-08-17 09:21)
   ✔ Implement Modals: Place Order, More Options, Share @done(18-08-16 23:08)
   ✔ Implement Search view @done(18-08-16 14:08)
   ✔ Implement Profile/Settings views @high @done(18-08-16 10:56)

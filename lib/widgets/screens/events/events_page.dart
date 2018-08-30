@@ -9,7 +9,7 @@ import 'package:glam/utils/mk_navigate.dart';
 import 'package:glam/utils/mk_theme.dart';
 import 'package:glam/widgets/partials/mk_burger_bar.dart';
 import 'package:glam/widgets/partials/mk_clear_button.dart';
-import 'package:glam/widgets/partials/mk_drawer.dart';
+import 'package:glam/widgets/views/side_bar_drawer.dart';
 import 'package:glam/widgets/partials/mk_primary_button.dart';
 import 'package:glam/widgets/screens/events/event_page.dart';
 import 'package:glam/widgets/screens/events/ui/swiper_mode.dart';
@@ -54,7 +54,7 @@ class _EventsPageState extends State<EventsPage> with MkDrawerProvider {
     return new Scaffold(
       key: scaffoldKey,
       backgroundColor: MkColors.black.shade900,
-      // drawer: const MkDrawer(),
+      // drawer: const SideBarDrawer(),
       appBar: new MkBurgerBar(
         currentPage: MkPages.Events,
         brightness: Brightness.dark,

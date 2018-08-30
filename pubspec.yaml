@@ -14,9 +14,9 @@ dependencies:
     git:
       url: https://github.com/d-silveira/flutter-share.git
 
-dev_dependencies:
-  flutter_test:
-    sdk: flutter
+# dev_dependencies:
+#   flutter_test:
+#     sdk: flutter
 
 flutter:
   uses-material-design: true
