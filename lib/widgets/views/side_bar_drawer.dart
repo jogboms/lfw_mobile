@@ -6,12 +6,12 @@ import 'package:glam/utils/mk_status_bar.dart';
 import 'package:glam/utils/mk_theme.dart';
 import 'package:glam/widgets/partials/mk_close_button.dart';
 import 'package:glam/widgets/partials/mk_touchable_opacity.dart';
+import 'package:glam/widgets/screens/contact/contact_page.dart';
 import 'package:glam/widgets/screens/designers/designers_page.dart';
 import 'package:glam/widgets/screens/events/events_page.dart';
 import 'package:glam/widgets/screens/lookbooks/lookbooks_page.dart';
 import 'package:glam/widgets/screens/profile/profile_page.dart';
 import 'package:glam/widgets/screens/stories/stories_page.dart';
-import 'package:glam/widgets/views/placeholder_view.dart';
 
 enum MkPages {
   Events,
@@ -139,7 +139,7 @@ class SideBarDrawer extends StatelessWidget {
         _buildListTile(
           context: context,
           text: "Contact",
-          widget: new PlaceholderView(),
+          widget: new ContactPage(),
           page: MkPages.Contact,
           style: style,
         ),

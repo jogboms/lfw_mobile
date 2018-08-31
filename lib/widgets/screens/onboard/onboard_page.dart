@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:glam/constants/mk_colors.dart';
 import 'package:glam/constants/mk_images.dart';
+import 'package:glam/constants/mk_routes.dart';
 import 'package:glam/constants/mk_style.dart';
 import 'package:glam/utils/mk_navigate.dart';
 import 'package:glam/utils/mk_theme.dart';
@@ -93,7 +94,11 @@ class OnboardPageState extends State<OnboardPage> {
                     ),
                     onPressed: () {
                       if (_isFinal) {
-                        MkNavigate(context, LoginPage());
+                        MkNavigate(
+                          context,
+                          LoginPage(),
+                          name: MkRoutes.login,
+                        );
                       } else {
                         _controller.move(config.itemCount - 1);
                       }

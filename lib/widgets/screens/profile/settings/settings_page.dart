@@ -10,12 +10,8 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPage> {
-  TextStyle _formStyle;
-
   @override
   Widget build(BuildContext context) {
-    _formStyle = MkTheme.of(context).subhead3;
-
     return new Scaffold(
       appBar: AppBar(
         backgroundColor: kAccentColor,
@@ -42,9 +38,8 @@ class _SettingsPageState extends State<SettingsPage> {
                 _buildTextFormField(
                   hintText: "Fullname",
                 ),
-                SizedBox(height: 16.0),
+                SizedBox(height: 8.0),
                 Container(
-                  padding: EdgeInsets.only(bottom: 12.0),
                   decoration: BoxDecoration(
                     border: Border(bottom: MkBorderSide()),
                   ),
@@ -52,9 +47,7 @@ class _SettingsPageState extends State<SettingsPage> {
                     child: new DropdownButton<String>(
                       hint: Text(
                         "Gender",
-                        style: _formStyle.copyWith(
-                          color: kHintColor,
-                        ),
+                        style: MkTheme.of(context).textfield,
                       ),
                       elevation: 1,
                       items: <String>['Male', 'Female', 'Others'].map(
@@ -63,7 +56,7 @@ class _SettingsPageState extends State<SettingsPage> {
                             value: value,
                             child: new Text(
                               value,
-                              style: _formStyle,
+                              style: MkTheme.of(context).body1,
                             ),
                           );
                         },
@@ -72,26 +65,26 @@ class _SettingsPageState extends State<SettingsPage> {
                     ),
                   ),
                 ),
-                SizedBox(height: 24.0),
+                SizedBox(height: 20.0),
                 _buildTextFormField(
                   hintText: "Email",
                 ),
-                SizedBox(height: 24.0),
+                SizedBox(height: 20.0),
                 _buildTextFormField(
                   hintText: "Phone Number",
                 ),
-                SizedBox(height: 24.0),
+                SizedBox(height: 20.0),
                 _buildTextFormField(
                   hintText: "Address",
                 ),
-                SizedBox(height: 24.0),
+                SizedBox(height: 20.0),
                 _buildTextFormField(
                   hintText: "Website",
                 ),
-                SizedBox(height: 24.0),
+                SizedBox(height: 20.0),
                 _buildTextFormField(
                   hintText: "Bio",
-                  maxLines: null,
+                  maxLines: 4,
                 ),
                 SizedBox(height: 24.0),
                 MkPrimaryButton(
@@ -113,13 +106,10 @@ class _SettingsPageState extends State<SettingsPage> {
     return TextFormField(
       decoration: InputDecoration(
         hintText: hintText,
-        hintStyle: _formStyle.copyWith(
-          color: kHintColor,
-        ),
-        contentPadding: EdgeInsets.only(bottom: 24.0),
+        contentPadding: EdgeInsets.only(bottom: 16.0),
       ),
-      style: _formStyle,
       maxLines: maxLines,
+      scrollPadding: EdgeInsets.only(bottom: 40.0),
     );
   }
 }

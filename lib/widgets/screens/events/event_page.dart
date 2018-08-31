@@ -64,15 +64,23 @@ class EventPageState extends State<EventPage> {
             ),
           ];
         },
-        body: CustomScrollView(
-          slivers: <Widget>[
-            SliverList(
-              delegate: SliverChildListDelegate([
-                _buildBody(),
-                new EventFooter(),
-              ]),
-            ),
-          ],
+        body: new Builder(
+          builder: (BuildContext context) {
+            return CustomScrollView(
+              slivers: <Widget>[
+                new SliverOverlapInjector(
+                  handle:
+                      NestedScrollView.sliverOverlapAbsorberHandleFor(context),
+                ),
+                SliverList(
+                  delegate: SliverChildListDelegate([
+                    _buildBody(),
+                    new EventFooter(),
+                  ]),
+                ),
+              ],
+            );
+          },
         ),
       ),
     );
@@ -85,7 +93,7 @@ class EventPageState extends State<EventPage> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          SizedBox(height: 96.0),
+          SizedBox(height: 16.0),
           Text(
             widget.title,
             style: MkTheme.of(context).display2,
@@ -159,7 +167,7 @@ class EventPageState extends State<EventPage> {
     return SliverAppBar(
       backgroundColor: MkColors.black.shade900,
       brightness: Brightness.dark,
-      expandedHeight: MediaQuery.of(context).size.height / 1.28,
+      expandedHeight: (MediaQuery.of(context).size.height) / 1.28,
       leading: MkBackButton(color: Colors.white),
       pinned: true,
       centerTitle: false,

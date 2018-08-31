@@ -173,11 +173,12 @@ class _SearchPageState extends State<SearchPage> {
         child: TextField(
           decoration: InputDecoration(
             hintText: "Search",
-            hintStyle: MkTheme.of(context).textfield,
+            hintStyle: MkTheme.of(context).textfieldLarge,
             contentPadding: EdgeInsets.only(bottom: 14.0),
           ),
           textInputAction: TextInputAction.search,
-          style: MkTheme.of(context).body1,
+          style: MkTheme.of(context).subhead3,
+          autofocus: true,
         ),
         // ),
       ),

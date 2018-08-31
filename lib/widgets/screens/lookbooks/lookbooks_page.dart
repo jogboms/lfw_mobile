@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:glam/constants/mk_colors.dart';
 import 'package:glam/constants/mk_style.dart';
 import 'package:glam/models/lookbook.dart';
+import 'package:glam/utils/mk_persistent_header_delegate.dart';
 import 'package:glam/utils/mk_theme.dart';
 import 'package:glam/widgets/partials/mk_burger_bar.dart';
-import 'package:glam/widgets/views/side_bar_drawer.dart';
 import 'package:glam/widgets/screens/lookbooks/ui/book_grid_item.dart';
+import 'package:glam/widgets/views/side_bar_drawer.dart';
 
 class LookbooksPage extends StatefulWidget {
   @override
@@ -33,21 +35,24 @@ class _LookbooksPageState extends State<LookbooksPage> {
         top: false,
         child: CustomScrollView(
           slivers: <Widget>[
-            SliverList(
-              delegate: SliverChildListDelegate(
-                [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                    child: Text(
-                      "Lookbooks",
-                      style: MkTheme.of(context).display3,
-                    ),
-                  ),
-                  SizedBox(height: 24.0),
-                  _buildFilterBlock(context),
-                  Divider(height: 1.0),
-                  SizedBox(height: 24.0),
-                ],
+            SliverAppBar(
+              automaticallyImplyLeading: false,
+              centerTitle: false,
+              backgroundColor: MkColors.white,
+              title: Text(
+                "Lookbooks",
+                style: MkTheme.of(context).display3,
+              ),
+            ),
+            SliverPersistentHeader(
+              pinned: true,
+              delegate: MkPersistentHeaderDelegate(
+                builder: (BuildContext context, bool isAtTop) {
+                  return Material(
+                    elevation: isAtTop ? 2.0 : 0.25,
+                    child: _buildFilterBlock(context),
+                  );
+                },
               ),
             ),
             _buildGridItems()
@@ -59,7 +64,7 @@ class _LookbooksPageState extends State<LookbooksPage> {
 
   Widget _buildGridItems() {
     return SliverPadding(
-      padding: const EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 56.0),
+      padding: const EdgeInsets.fromLTRB(16.0, 32.0, 16.0, 56.0),
       sliver: SliverGrid(
         gridDelegate: new SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,

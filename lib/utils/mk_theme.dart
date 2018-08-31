@@ -42,6 +42,9 @@ class MkTheme extends InheritedWidget {
   TextStyle get textfield => body1.copyWith(
         color: MkColors.light_grey.withOpacity(.8),
       );
+  TextStyle get textfieldLarge => subhead3.copyWith(
+        color: MkColors.light_grey.withOpacity(.8),
+      );
 
   TextStyle get _header18Style => mkFontMedium(18.0);
   TextStyle get _header20Style => mkFontMedium(20.0);
