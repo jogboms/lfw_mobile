@@ -101,7 +101,7 @@ class _SettingsPageState extends State<SettingsPage> {
 
   TextFormField _buildTextFormField({
     String hintText,
-    int maxLines,
+    int maxLines = 1,
   }) {
     return TextFormField(
       decoration: InputDecoration(

@@ -68,7 +68,7 @@ class OrderModalState extends State<OrderModal> {
 
   Widget _buildTextFormField({
     String hintText,
-    int maxLines,
+    int maxLines = 1,
   }) {
     return TextFormField(
       decoration: InputDecoration(

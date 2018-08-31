@@ -11,7 +11,11 @@ class ContactPage extends StatefulWidget {
 }
 
 class _ContactPageState extends State<ContactPage> {
+  final _formKey = GlobalKey<FormState>();
+  final String _emailAddress = "nd@siliconbear.com";
   TextStyle _formStyle;
+  String _subject = "";
+  String _emailBody = "";
 
   @override
   Widget build(BuildContext context) {
@@ -29,6 +33,7 @@ class _ContactPageState extends State<ContactPage> {
         child: SingleChildScrollView(
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
           child: Form(
+            key: _formKey,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
@@ -46,21 +51,27 @@ class _ContactPageState extends State<ContactPage> {
                 SizedBox(height: 48.0),
                 _buildTextFormField(
                   hintText: "Subject",
+                  onSaved: (value) => _subject = value.trim(),
                 ),
                 SizedBox(height: 24.0),
                 _buildTextFormField(
                   hintText: "Message",
+                  onSaved: (value) => _emailBody = value.trim(),
                   maxLines: 4,
                 ),
                 SizedBox(height: 48.0),
                 MkPrimaryButton(
                   child: Text("Send"),
                   onPressed: () {
-                    email(
-                      email: "nd@siliconbear",
-                      subject: "subject",
-                      body: "",
-                    );
+                    _formKey.currentState.save();
+
+                    if (_subject.isNotEmpty && _emailBody.isNotEmpty) {
+                      email(
+                        email: _emailAddress,
+                        subject: _subject,
+                        body: _emailBody,
+                      );
+                    }
                   },
                 ),
                 SizedBox(height: 48.0),
@@ -74,7 +85,8 @@ class _ContactPageState extends State<ContactPage> {
 
   TextFormField _buildTextFormField({
     String hintText,
-    int maxLines,
+    int maxLines = 1,
+    void Function(String) onSaved,
   }) {
     return TextFormField(
       decoration: InputDecoration(
@@ -86,6 +98,7 @@ class _ContactPageState extends State<ContactPage> {
       ),
       style: _formStyle,
       maxLines: maxLines,
+      onSaved: onSaved,
     );
   }
 }
