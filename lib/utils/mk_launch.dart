@@ -16,5 +16,9 @@ void call(String phone) => _launch('tel:$phone');
 
 void sms(String phone) => _launch('sms:$phone');
 
-void email(String subject, String email) =>
-    _launch('mailto:$email?subject=$subject');
+void email({
+  String email,
+  String subject,
+  String body = "",
+}) =>
+    _launch('mailto:$email?subject=$subject&body=$body');

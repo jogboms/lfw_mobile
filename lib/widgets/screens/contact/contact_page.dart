@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:glam/constants/mk_style.dart';
+import 'package:glam/utils/mk_launch.dart';
 import 'package:glam/utils/mk_theme.dart';
 import 'package:glam/widgets/partials/mk_back_button.dart';
 import 'package:glam/widgets/partials/mk_primary_button.dart';
@@ -54,7 +55,13 @@ class _ContactPageState extends State<ContactPage> {
                 SizedBox(height: 48.0),
                 MkPrimaryButton(
                   child: Text("Send"),
-                  onPressed: () {},
+                  onPressed: () {
+                    email(
+                      email: "nd@siliconbear",
+                      subject: "subject",
+                      body: "",
+                    );
+                  },
                 ),
                 SizedBox(height: 48.0),
               ],

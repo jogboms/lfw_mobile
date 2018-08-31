@@ -163,11 +163,16 @@ class EventPageState extends State<EventPage> {
     );
   }
 
+  double get _appBarHeight {
+    final _mediaQuery = MediaQuery.of(context);
+    return (_mediaQuery.size.height + _mediaQuery.padding.bottom) / 1.28;
+  }
+
   SliverAppBar _buildAppBar() {
     return SliverAppBar(
       backgroundColor: MkColors.black.shade900,
       brightness: Brightness.dark,
-      expandedHeight: (MediaQuery.of(context).size.height) / 1.28,
+      expandedHeight: _appBarHeight,
       leading: MkBackButton(color: Colors.white),
       pinned: true,
       centerTitle: false,
